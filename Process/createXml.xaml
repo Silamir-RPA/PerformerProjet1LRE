@@ -221,7 +221,7 @@
       <AssemblyReference>UiPath.Platform</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="createXml" sap:VirtualizedContainerService.HintSize="987.3333333333333,645.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="createXml" sap:VirtualizedContainerService.HintSize="1933,625.2239999999999" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sxl:XDocument" Name="xmlDoc" />
       <Variable x:TypeArguments="x:String" Name="xmlResult" />
@@ -232,12 +232,15 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Test" sap:VirtualizedContainerService.HintSize="434,118" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[in_dataXml]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" xml:space="preserve">[New Dictionary(Of String, String) From {
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,179" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <ui:MultipleAssign.AssignOperations>
+        <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[in_dataXml]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" xml:space="preserve">[New Dictionary(Of String, String) From {
     {"ID_PLI", "AAAAMMJJ.RPA-000001-01-100-008"},
     {"NUM_LOT", "AAAAMMJJ.RPA-000001-01-100"},
     {"BOITE_ARCHIVE", "000001"},
@@ -249,27 +252,30 @@
     {"TYPE_PLI", "PRODUCTION"},
     {"CANAL", "SIEGE"},
     {"NUM_ASSURE_PRINCIPAL", "980190111617U"},
-    {"NOM_PDF", "AAAAMMJJ_HHMMSS_MATMUTRPA_00000008.pdf"},
+    {"NOM_PDF", in_filePath.Split("\").Last},
     {"CLE", "NON APPLICABLE"},
     {"DATE_RECEPTION", "AAAAMMJJHHMM"},
     {"DATE_NUMERISATION", "AAAAMMJJHHMMSS"}
 }]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[in_dataXml("SITE_NUM")]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">ROBOTPA</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim sb As New System.Text.StringBuilder()&#xA;sb.AppendLine(&quot;&lt;PLI&gt;&quot;)&#xA;For Each kvp As KeyValuePair(Of String, String) In test&#xA;    sb.AppendLine(String.Format(&quot;  &lt;{0}&gt;{1}&lt;/{0}&gt;&quot;, &#xA;        System.Security.SecurityElement.Escape(kvp.Key), &#xA;        System.Security.SecurityElement.Escape(kvp.Value)))&#xA;Next&#xA;sb.AppendLine(&quot;&lt;/PLI&gt;&quot;)&#xA;&#xA;xmlResult = sb.ToString()&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="434,197.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="x:String">[in_dataXml("SITE_NUM")]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="x:String">ROBOTPA</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+        </scg:List>
+      </ui:MultipleAssign.AssignOperations>
+    </ui:MultipleAssign>
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim sb As New System.Text.StringBuilder()&#xA;sb.AppendLine(&quot;&lt;PLI&gt;&quot;)&#xA;For Each kvp As KeyValuePair(Of String, String) In test&#xA;    sb.AppendLine(String.Format(&quot;  &lt;{0}&gt;{1}&lt;/{0}&gt;&quot;, &#xA;        System.Security.SecurityElement.Escape(kvp.Key), &#xA;        System.Security.SecurityElement.Escape(kvp.Value)))&#xA;Next&#xA;sb.AppendLine(&quot;&lt;/PLI&gt;&quot;)&#xA;&#xA;xmlResult = sb.ToString()&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="479,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="test">[in_dataXml]</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="xmlResult">[xmlResult]</OutArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
-    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="[in_filePath.Replace(&quot;.pdf&quot;,&quot;.xml&quot;)]" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[xmlResult]" />
+    <ui:WriteTextFile File="{x:Null}" DisplayName="Write Text File" FileName="[in_filePath.Replace(&quot;.pdf&quot;,&quot;.xml&quot;)]" sap:VirtualizedContainerService.HintSize="479,156" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[xmlResult]" />
   </Sequence>
 </Activity>
