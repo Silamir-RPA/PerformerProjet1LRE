@@ -15,7 +15,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "25.0.167.0",
-  "projectVersion": "1.0.1",
+  "projectVersion": "1.0.0",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -60,7 +60,7 @@
         "fileName": "Tests\\InitAllApplicationsTestCase.xaml"
       },
       {
-        "editingStatus": "InProgress",
+        "editingStatus": "Publishable",
         "testCaseId": "0e89d5e8-f70e-4f0e-9048-b2082fcad6fe",
         "testCaseType": "TestCase",
         "executionTemplateType": "Local",
