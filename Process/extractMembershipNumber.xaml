@@ -93,13 +93,13 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="extractMembershipNumber" sap:VirtualizedContainerService.HintSize="1916.0000000000002,2320" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="extractMembershipNumber" sap:VirtualizedContainerService.HintSize="1916.0000000000002,2393.9999999999995" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap2010:Annotation.AnnotationText="&#xA;" DisplayName="Extract Le numero de reference" sap:VirtualizedContainerService.HintSize="620,2297" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="&#xA;" DisplayName="Extract Le numero de reference" sap:VirtualizedContainerService.HintSize="674,2371" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="txtString" />
         <Variable x:TypeArguments="scg:List(x:String)" Name="listMatch" />
@@ -121,7 +121,7 @@
           <InArgument x:TypeArguments="s:String[]">[New String(){}]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap:VirtualizedContainerService.HintSize="586,115" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign sap:VirtualizedContainerService.HintSize="640,115" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:List(x:String)">[listMatch]</OutArgument>
         </Assign.To>
@@ -129,20 +129,20 @@
           <InArgument x:TypeArguments="scg:List(x:String)">[(From m In System.Text.RegularExpressions.Regex.Matches(txtString, "\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}\d{1} {0,2}[A-Za-z]\ {0,2}[A-Za-z0-9]{0,2}") Select m.Value).ToList()]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[index]" DisplayName="a chaque fois qu'on trouve une réference dans le pdf" sap:VirtualizedContainerService.HintSize="586,1536" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[listMatch]">
+      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[index]" DisplayName="a chaque fois qu'on trouve une réference dans le pdf" sap:VirtualizedContainerService.HintSize="640,1610" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[listMatch]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="x:String">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="552,1389" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="606,1463" sap2010:WorkflowViewState.IdRef="Sequence_3">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If Condition="[index=0]" DisplayName="Si première itération" sap:VirtualizedContainerService.HintSize="518,788" sap2010:WorkflowViewState.IdRef="If_1">
+              <If Condition="[index=0]" DisplayName="Si première itération" sap:VirtualizedContainerService.HintSize="572,862" sap2010:WorkflowViewState.IdRef="If_1">
                 <If.Then>
                   <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,166" sap2010:WorkflowViewState.IdRef="Sequence_4">
                     <sap:WorkflowViewStateService.ViewState>
@@ -168,13 +168,13 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484,451" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="538,525" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[currentText.Replace(&quot; &quot;,&quot;&quot;).Substring(0,13).ToUpper=out_numeroSocietaire.ToUpper]" DisplayName="Vérifier l'existence d'un autre numéro societaire" sap:VirtualizedContainerService.HintSize="450,391" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If Condition="[currentText.Replace(&quot; &quot;,&quot;&quot;).Substring(0,13).ToUpper=out_numeroSocietaire.ToUpper]" DisplayName="Vérifier l'existence d'un autre numéro societaire" sap:VirtualizedContainerService.HintSize="504,465" sap2010:WorkflowViewState.IdRef="If_2">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -191,21 +191,27 @@
                         </Sequence>
                       </If.Then>
                       <If.Else>
-                        <Sequence sap2010:Annotation.AnnotationText="Ajouter la regle pour diviser le pdf" DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,139" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <Sequence sap2010:Annotation.AnnotationText="Ajouter la regle pour diviser le pdf" DisplayName="Else" sap:VirtualizedContainerService.HintSize="470,213" sap2010:WorkflowViewState.IdRef="Sequence_6">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Throw Exception="[New BusinessRuleException(&quot;Existence de plusieurs réferences&quot;)]" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="Throw_1">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                          </Throw>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,122" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Activités ignorées" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                <Throw Exception="[New BusinessRuleException(&quot;Existence de plusieurs réferences&quot;)]" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="Throw_1">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </Throw>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                          </ui:CommentOut>
                         </Sequence>
                       </If.Else>
                     </If>
