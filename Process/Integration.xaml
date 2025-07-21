@@ -183,7 +183,7 @@
                 <InArgument x:TypeArguments="x:Int32" x:Key="in_numPlis">[Convert.ToInt32(folderInfo.GetFiles.Count/2)]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <uascw:CompressFiles CompressedResource="{x:Null}" Password="{x:Null}" ResourcesToArchive="{x:Null}" SecurePassword="{x:Null}" AllowDuplicateContentNames="False" CodePage="Default" CompressedFileInfo="[fileInfo]" CompressedFileName="[&quot;DOMAINE_&quot;+Now.ToString(&quot;yyyyMMdd_HHmmss&quot;)+&quot;_&quot;+in_idLot.ToString(&quot;D9&quot;)+&quot;.zip&quot;]" CompressionLevel="Normal" DisplayName="Compress/Zip Files" EncryptionAlgorithm="Classic" sap:VirtualizedContainerService.HintSize="434,247" sap2010:WorkflowViewState.IdRef="CompressFiles_1" OverrideExistingFile="True">
+            <uascw:CompressFiles CompressedResource="{x:Null}" Password="{x:Null}" ResourcesToArchive="{x:Null}" SecurePassword="{x:Null}" AllowDuplicateContentNames="False" CodePage="Default" CompressedFileInfo="[fileInfo]" CompressedFileName="[&quot;MATMUTRPA_&quot;+Now.ToString(&quot;yyyyMMdd_HHmmss&quot;)+&quot;_&quot;+in_idLot.ToString(&quot;D9&quot;)+&quot;.zip&quot;]" CompressionLevel="Normal" DisplayName="Compress/Zip Files" EncryptionAlgorithm="Classic" sap:VirtualizedContainerService.HintSize="434,247" sap2010:WorkflowViewState.IdRef="CompressFiles_1" OverrideExistingFile="True">
               <uascw:CompressFiles.ContentToArchive>
                 <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
                   <InArgument x:TypeArguments="x:String">[files+"|"+in_Config("folderPathTraites").ToString+"\DOMAINE_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")+".xml"]</InArgument>
