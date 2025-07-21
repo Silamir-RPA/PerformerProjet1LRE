@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Séquence" this:Séquence.in_pathQueue="C:\Users\Walid ABRA\Documents\Nouveau dossier\Nouveau dossier\20250721_161557_MATMUTRPA_000000049.pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Séquence" this:Séquence.in_pathQueue="C:\Users\Walid ABRA\Documents\Nouveau dossier\Nouveau dossier\20250721_161557_MATMUTRPA_000000049.pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_pathQueue" Type="InArgument(x:String)" />
   </x:Members>
@@ -101,152 +101,16 @@
       <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Séquence" sap:VirtualizedContainerService.HintSize="1062.6666666666667,2097.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Séquence" sap:VirtualizedContainerService.HintSize="1933,1042.04" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="si:DirectoryInfo" Name="fin" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Sous-Dossier" sap:VirtualizedContainerService.HintSize="580.6666666666666,2074.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_2">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="s:DateTime" Name="dateNow" />
-        <Variable x:TypeArguments="x:Int32" Name="idDocument" />
-        <Variable x:TypeArguments="x:String" Name="fileNamePdf" />
-        <Variable x:TypeArguments="x:String" Name="pathFilePdf" />
-        <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="in_Config" />
-        <Variable x:TypeArguments="x:Int32" Name="countPage" />
-        <Variable x:TypeArguments="x:Int32" Name="idLot" />
-        <Variable x:TypeArguments="x:String" Name="numeroSocietaire" />
-        <Variable x:TypeArguments="s:String[]" Name="perimetreArray" />
-        <Variable x:TypeArguments="si:DirectoryInfo" Name="fileInfo" />
-        <Variable x:TypeArguments="s:String[]" Name="files" />
-      </Sequence.Variables>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InitAllSettings - Invoke Workflow File (Framework\InitAllSettings.xaml)" sap:VirtualizedContainerService.HintSize="546.6666666666666,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
-        <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">C:\Users\Walid ABRA\Documents\UiPath\LRE Automation Performer\Data\Config.xlsx</InArgument>
-          <InArgument x:TypeArguments="s:String[]" x:Key="in_ConfigSheets">[New String() {"Constants", "Settings"}]</InArgument>
-          <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[in_Config]</OutArgument>
-        </ui:InvokeWorkflowFile.Arguments>
-      </ui:InvokeWorkflowFile>
-      <ui:GetFolderInfoX DisplayName="Get Folder Info" FolderPath="C:\Users\Walid ABRA\Documents\LRE\Inprogress" sap:VirtualizedContainerService.HintSize="546.6666666666666,168.66666666666666" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_1" Output="[fileInfo]" ThrowIfNotExists="False">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:GetFolderInfoX>
-      <Assign sap:VirtualizedContainerService.HintSize="546.6666666666666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
-        <Assign.To>
-          <OutArgument x:TypeArguments="s:String[]">[files]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="s:String[]">[fileInfo.GetFiles().Select(Function(f) f.FullName).ToArray()]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="546.6666666666666,1528.6666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[files]">
-        <ui:ForEach.Body>
-          <ActivityAction x:TypeArguments="x:String">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
-            </ActivityAction.Argument>
-            <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="512.6666666666666,1390" sap2010:WorkflowViewState.IdRef="Sequence_3">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[in_config(&quot;idDocument&quot;).ToString.Trim]" CacheStrategy="None" DisplayName="get current IdDocument" FolderPath="[in_Config(&quot;DossierOrchestator&quot;).ToString.Trim]" sap:VirtualizedContainerService.HintSize="478.6666666666667,176.66666666666666" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
-                <ui:GetRobotAsset.Value>
-                  <OutArgument x:TypeArguments="x:Int32">[idDocument]</OutArgument>
-                </ui:GetRobotAsset.Value>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:GetRobotAsset>
-              <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="478.6666666666667,210.66666666666666" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
-                <ui:MultipleAssign.AssignOperations>
-                  <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
-                      <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="s:DateTime">[dateNow]</OutArgument>
-                      </ui:AssignOperation.To>
-                      <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="s:DateTime">[Now]</InArgument>
-                      </ui:AssignOperation.Value>
-                    </ui:AssignOperation>
-                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
-                      <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="x:String">[fileNamePdf]</OutArgument>
-                      </ui:AssignOperation.To>
-                      <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="x:String">[dateNow.ToString("yyyyMMdd_HHmmss")+"_MATMUTRPA_"+idDocument.ToString("D9")+".pdf"]</InArgument>
-                      </ui:AssignOperation.Value>
-                    </ui:AssignOperation>
-                    <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
-                      <ui:AssignOperation.To>
-                        <OutArgument x:TypeArguments="x:String">[pathFilePdf]</OutArgument>
-                      </ui:AssignOperation.To>
-                      <ui:AssignOperation.Value>
-                        <InArgument x:TypeArguments="x:String">[currentText.Substring(0,currentText.LastIndexOf("\"))+"\"+fileNamePdf]</InArgument>
-                      </ui:AssignOperation.Value>
-                    </ui:AssignOperation>
-                  </scg:List>
-                </ui:MultipleAssign.AssignOperations>
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-              </ui:MultipleAssign>
-              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="478.6666666666667,124" sap2010:WorkflowViewState.IdRef="Delay_1" />
-              <ui:RenameFileX DisplayName="Rename File" FilePath="[currentText]" sap:VirtualizedContainerService.HintSize="478.6666666666667,180" sap2010:WorkflowViewState.IdRef="RenameFileX_1" KeepExtension="True" NewName="[pathFilePdf]" />
-              <upap:GetPDFPageCount DisplayName="Get PDF Page Count" FileName="[pathFilePdf]" sap:VirtualizedContainerService.HintSize="478.6666666666667,116" sap2010:WorkflowViewState.IdRef="GetPDFPageCount_1" PageCount="[countPage]" />
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ExtractOnefilePDF - Invoke Workflow File (Process\ExtractOnefilePDF.xaml)" sap:VirtualizedContainerService.HintSize="478.6666666666667,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Process\ExtractOnefilePDF.xaml">
-                <ui:InvokeWorkflowFile.Arguments>
-                  <InOutArgument x:TypeArguments="x:Int32" x:Key="idDocument">[idDocument]</InOutArgument>
-                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                  <InOutArgument x:TypeArguments="x:Int32" x:Key="idLot">[idLot]</InOutArgument>
-                  <InOutArgument x:TypeArguments="x:String" x:Key="numeroSocietaire">[numeroSocietaire]</InOutArgument>
-                  <InOutArgument x:TypeArguments="s:String[]" x:Key="perimetreArray">[perimetreArray]</InOutArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="pathFilePdf">[pathFilePdf]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="fileNamePdf">[fileNamePdf]</InArgument>
-                  <InArgument x:TypeArguments="x:Int32" x:Key="countPage">[countPage]</InArgument>
-                </ui:InvokeWorkflowFile.Arguments>
-              </ui:InvokeWorkflowFile>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="addToReport - Invoke Workflow File (Process\addToReport.xaml)" sap:VirtualizedContainerService.HintSize="478.6666666666667,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Process\addToReport.xaml">
-                <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_pathQueue]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_fileName">[fileNamePdf]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_idDocument">[idDocument.ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_idLot">[idLot.ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_state">Success</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_reason" />
-                  <InArgument x:TypeArguments="x:String" x:Key="in_pathReport">[in_Config("in_pathReport").ToString]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_sousDossier">Oui</InArgument>
-                </ui:InvokeWorkflowFile.Arguments>
-              </ui:InvokeWorkflowFile>
-              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Integration - Invoke Workflow File (Process\Integration.xaml)" sap:VirtualizedContainerService.HintSize="478.6666666666667,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Process\Integration.xaml">
-                <ui:InvokeWorkflowFile.Arguments>
-                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_last">False</InArgument>
-                  <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
-                  <InArgument x:TypeArguments="x:Int32" x:Key="in_idLot">[idLot]</InArgument>
-                </ui:InvokeWorkflowFile.Arguments>
-              </ui:InvokeWorkflowFile>
-            </Sequence>
-          </ActivityAction>
-        </ui:ForEach.Body>
-      </ui:ForEach>
-    </Sequence>
+    <ui:GetFolderInfoX DisplayName="Get Folder Info" FolderPath="C:\Users\rpa.lre.res.dev\Documents\LRE ROBOT\" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_2" Output="[fin]" ThrowIfNotExists="False" />
+    <upap:JoinPDF DisplayName="Join PDF Files" FileList="[fin.GetFiles().Select(function(a) a.FullName ).ToArray()]" sap:VirtualizedContainerService.HintSize="416,105" sap2010:WorkflowViewState.IdRef="JoinPDF_1" OutputFileName="C:\Users\rpa.lre.res.dev\Documents\LRE ROBOT\14596-11380402-NOTIF-2024-11-22-13100.pdf" />
   </Sequence>
 </Activity>
