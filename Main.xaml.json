@@ -28,6 +28,18 @@
       "IsPrincipal": true,
       "ArgumentType": 0,
       "DataSourceItems": null
+    },
+    {
+      "Name": "in_pathConfig",
+      "DisplayName": "in_pathConfig",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": "Data\\Config.xlsx",
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
     }
   ]
 }

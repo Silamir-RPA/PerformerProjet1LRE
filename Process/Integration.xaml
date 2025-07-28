@@ -3,6 +3,7 @@
     <x:Property Name="in_last" Type="InArgument(x:Boolean)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_idLot" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_idDocument" Type="InArgument(x:Int32)" />
   </x:Members>
   <this:Integration.in_idLot>
     <InArgument x:TypeArguments="x:Int32" />
@@ -115,9 +116,10 @@
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1062.6666666666667,1812" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="1062.6666666666667,2532" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="si:DirectoryInfo" Name="folderInfo" />
     </Sequence.Variables>
@@ -126,125 +128,132 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Integration" sap:VirtualizedContainerService.HintSize="536,1789.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_50">
+    <ui:GetFolderInfoX DisplayName="recuperer les infos du dossier " FolderPath="[in_Config(&quot;folderPathTmp&quot;).ToString]" sap:VirtualizedContainerService.HintSize="518,168.66666666666666" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_2" Output="[folderInfo]" ThrowIfNotExists="False" />
+    <If Condition="[folderInfo.GetFiles.Count&gt;=1000 or (folderInfo.GetFiles.Count&gt;0 and in_last)]" DisplayName="si c'est le dernier iteam queue ou le dossier contient 1000 fichier" sap:VirtualizedContainerService.HintSize="518,2340.6666666666665" sap2010:WorkflowViewState.IdRef="If_18">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetFolderInfoX DisplayName="Get Folder Info" FolderPath="[in_Config(&quot;folderPathTraites&quot;).ToString]" sap:VirtualizedContainerService.HintSize="502,168.66666666666666" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_2" Output="[folderInfo]" ThrowIfNotExists="False" />
-      <If Condition="[folderInfo.GetFiles.Count&gt;=14 or (folderInfo.GetFiles.Count&gt;0 and in_last)]" sap:VirtualizedContainerService.HintSize="502,1538" sap2010:WorkflowViewState.IdRef="If_18">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <If.Then>
-          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,1286" sap2010:WorkflowViewState.IdRef="Sequence_46">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="files" />
-              <Variable x:TypeArguments="si:FileInfo" Name="fileInfo" />
-              <Variable x:TypeArguments="s:DateTime" Name="dateGlobal" />
-              <Variable x:TypeArguments="x:String" Name="numlot" />
-            </Sequence.Variables>
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,2087.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_46">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="files" />
+            <Variable x:TypeArguments="si:FileInfo" Name="fileInfo" />
+            <Variable x:TypeArguments="s:DateTime" Name="dateGlobal" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message - integration" sap:VirtualizedContainerService.HintSize="450,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Integration - Generer Xml Global et Compresser le dossier &quot;]" />
+          <Assign DisplayName="recuperer la date du jour pour xml global" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_26">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:DateTime">[dateGlobal]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:DateTime">[Now]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="lister les fichier à faire zipper" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_25">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[files]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[String.Join("|",folderInfo.GetFiles.Select(Function(f) f.FullName).ToArray)]</InArgument>
+            </Assign.Value>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_26">
-              <Assign.To>
-                <OutArgument x:TypeArguments="s:DateTime">[dateGlobal]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="s:DateTime">[Now]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <Assign sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_25">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[files]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[String.Join("|",folderInfo.GetFiles.Select(Function(f) f.FullName).ToArray)]</InArgument>
-              </Assign.Value>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </Assign>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="createXmlGlobal - Invoke Workflow File (Process\createXmlGlobal.xaml)" sap:VirtualizedContainerService.HintSize="434,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\createXmlGlobal.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="in_filePath">[in_Config("folderPathTraites").ToString+"\MATMUTRPA_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")]</InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="in_date">[dateGlobal.ToString("yyyyMMddHHmmss")]</InArgument>
-                <InArgument x:TypeArguments="x:Int32" x:Key="in_numPlis">[Convert.ToInt32(folderInfo.GetFiles.Count/2)]</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <uascw:CompressFiles CompressedResource="{x:Null}" Password="{x:Null}" ResourcesToArchive="{x:Null}" SecurePassword="{x:Null}" AllowDuplicateContentNames="False" CodePage="Default" CompressedFileInfo="[fileInfo]" CompressedFileName="[&quot;MATMUTRPA_&quot;+Now.ToString(&quot;yyyyMMdd_HHmmss&quot;)+&quot;_&quot;+in_idLot.ToString(&quot;D9&quot;)+&quot;.zip&quot;]" CompressionLevel="Normal" DisplayName="Compress/Zip Files" EncryptionAlgorithm="Classic" sap:VirtualizedContainerService.HintSize="434,252.66666666666666" sap2010:WorkflowViewState.IdRef="CompressFiles_1" OverrideExistingFile="True">
-              <uascw:CompressFiles.ContentToArchive>
-                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
-                  <InArgument x:TypeArguments="x:String">[files+"|"+in_Config("folderPathTraites").ToString+"\MATMUTRPA_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")+".xml"]</InArgument>
-                </scg:List>
-              </uascw:CompressFiles.ContentToArchive>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </uascw:CompressFiles>
-            <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_Config(&quot;folderNetworkFolder&quot;).ToString]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="434,57.333333333333336" sap2010:WorkflowViewState.IdRef="MoveFile_16" Path="[fileInfo.FullName]">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:MoveFile>
-            <ui:ForEachFileX DisplayName="For Each File In Folder" Folder="[in_Config(&quot;folderPathTraites&quot;).ToString]" sap:VirtualizedContainerService.HintSize="434,57.333333333333336" sap2010:WorkflowViewState.IdRef="ForEachFileX_5" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
-              <ui:ForEachFileX.Body>
-                <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
-                  <ActivityAction.Argument1>
-                    <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
-                  </ActivityAction.Argument1>
-                  <ActivityAction.Argument2>
-                    <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
-                  </ActivityAction.Argument2>
-                  <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="416,163" sap2010:WorkflowViewState.IdRef="Sequence_49">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="382,103" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[CurrentFile.FullName]" />
-                  </Sequence>
-                </ActivityAction>
-              </ui:ForEachFileX.Body>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:ForEachFileX>
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;idLot&quot;).ToString.Trim]" DisplayName="Set Asset" FolderPath="[in_Config(&quot;DossierOrchestator&quot;).ToString.Trim]" sap:VirtualizedContainerService.HintSize="434,229.33333333333334" sap2010:WorkflowViewState.IdRef="SetAsset_1" Value="[in_idLot+1]" />
-            <ui:SetAsset TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;idDocument&quot;).ToString.Trim]" DisplayName="Set Asset" FolderPath="[in_Config(&quot;DossierOrchestator&quot;).ToString.Trim]" sap:VirtualizedContainerService.HintSize="434,217" sap2010:WorkflowViewState.IdRef="SetAsset_2" Value="[1]" />
-          </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_47">
+          </Assign>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="creer un fichier xml global" sap:VirtualizedContainerService.HintSize="450,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Extraction\createXmlGlobal.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_filePath">[in_Config("folderPathTmp").ToString+"\MATMUTRPA_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_date">[dateGlobal.ToString("yyyyMMddHHmmss")]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_numPlis">[Convert.ToInt32(folderInfo.GetFiles.Count/2)]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <uascw:CompressFiles CompressedResource="{x:Null}" Password="{x:Null}" ResourcesToArchive="{x:Null}" SecurePassword="{x:Null}" AllowDuplicateContentNames="False" CodePage="Default" CompressedFileInfo="[fileInfo]" CompressedFileName="[&quot;MATMUTRPA_&quot;+Now.ToString(&quot;yyyyMMdd_HHmmss&quot;)+&quot;_&quot;+in_idLot.ToString(&quot;D9&quot;)+&quot;.zip&quot;]" CompressionLevel="Normal" DisplayName="Créer un fichier ZIP" EncryptionAlgorithm="Classic" sap:VirtualizedContainerService.HintSize="450,252.66666666666666" sap2010:WorkflowViewState.IdRef="CompressFiles_1" OverrideExistingFile="True">
+            <uascw:CompressFiles.ContentToArchive>
+              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
+                <InArgument x:TypeArguments="x:String">[files+"|"+in_Config("folderPathTmp").ToString+"\MATMUTRPA_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")+".xml"]</InArgument>
+              </scg:List>
+            </uascw:CompressFiles.ContentToArchive>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-          </Sequence>
-        </If.Else>
-      </If>
-    </Sequence>
+          </uascw:CompressFiles>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Incrementer Nombre ZIP" sap:VirtualizedContainerService.HintSize="450,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Process\utilities\IncrementerValue.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_name">ZIP</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_Config(&quot;folderNetworkFolder&quot;).ToString]" DisplayName="Deplacer le ZIP vers le dossier de sortie" sap:VirtualizedContainerService.HintSize="450,196.66666666666666" sap2010:WorkflowViewState.IdRef="MoveFile_16" Overwrite="True" Path="[fileInfo.FullName]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MoveFile>
+          <ui:ForEachFileX DisplayName="Vider le dossier dossier traité" Folder="[in_Config(&quot;folderPathTmp&quot;).ToString]" sap:VirtualizedContainerService.HintSize="450,466.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachFileX_5" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+            <ui:ForEachFileX.Body>
+              <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+                <ActivityAction.Argument1>
+                  <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
+                </ActivityAction.Argument1>
+                <ActivityAction.Argument2>
+                  <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                </ActivityAction.Argument2>
+                <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="416,164.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:DeleteFileX DisplayName="Supprimer fichier" sap:VirtualizedContainerService.HintSize="382,104.66666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[CurrentFile.FullName]" />
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachFileX.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEachFileX>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Incrementer id Lot fixe" sap:VirtualizedContainerService.HintSize="450,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Process\utilities\IncrementerFixeValue.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_name">idLot</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="set Id Document" sap:VirtualizedContainerService.HintSize="450,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Process\utilities\setValue.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_value">0</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_name">idDocument</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_47">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
   </Sequence>
 </Activity>
