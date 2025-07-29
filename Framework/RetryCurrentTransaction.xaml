@@ -64,7 +64,7 @@
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
     </sco1:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart sap2010:Annotation.AnnotationText="Manage the retrying mechanism for the framework and it is invoked in SetTransactionStatus.xaml when a system exception occurs. &#xA;The retrying method is based on the configurations defined in Config.xlsx." DisplayName="Retry Current Transaction" sap:VirtualizedContainerService.HintSize="1080,505.3733333333333" sap2010:WorkflowViewState.IdRef="Flowchart_7">
+  <Flowchart sap2010:Annotation.AnnotationText="Manage the retrying mechanism for the framework and it is invoked in SetTransactionStatus.xaml when a system exception occurs. &#xA;The retrying method is based on the configurations defined in Config.xlsx." DisplayName="Retry Current Transaction" sap:VirtualizedContainerService.HintSize="1772,1042.04" sap2010:WorkflowViewState.IdRef="Flowchart_7">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -145,7 +145,7 @@
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">105,595</av:Point>
                           <av:Size x:Key="ShapeSize">110,70</av:Size>
-                          <av:PointCollection x:Key="ConnectorLocation">160,665 160,715</av:PointCollection>
+                          <av:PointCollection x:Key="ConnectorLocation">160,665 160,735</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <Assign DisplayName="Increment TransactionNumber (Local retry)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Assign_28">
@@ -157,26 +157,81 @@
                         </Assign.Value>
                       </Assign>
                       <FlowStep.Next>
-                        <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                        <FlowStep x:Name="__ReferenceID10">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <av:Point x:Key="ShapeLocation">105,715</av:Point>
+                              <av:Point x:Key="ShapeLocation">105,735</av:Point>
                               <av:Size x:Key="ShapeSize">110,70</av:Size>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Envoyer Mail - Invoke Workflow File (Process\Rapports\Envoyer Mail.xaml)" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Rapports\Envoyer Mail.xaml">
-                            <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_to">[in_Config("Destinataire").ToString]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Object">Erreur</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_Body">[in_Config("bodyError").ToString+"&lt;br\&gt; Détails :&lt;br\&gt;"+in_SystemException.Message+""]</InArgument>
-                              <InArgument x:TypeArguments="x:String" x:Key="in_pj">[in_screenshotPath]</InArgument>
-                            </ui:InvokeWorkflowFile.Arguments>
+                          <Sequence DisplayName="Envoie Mail" sap:VirtualizedContainerService.HintSize="536,551" sap2010:WorkflowViewState.IdRef="Sequence_1">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                          </ui:InvokeWorkflowFile>
+                            <If Condition="[in_SystemException.Message.Contains(&quot;BE&quot;)]" sap:VirtualizedContainerService.HintSize="502,491" sap2010:WorkflowViewState.IdRef="If_1">
+                              <If.Then>
+                                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,222" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="x:String" Name="code" />
+                                  </Sequence.Variables>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_32">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[code]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[in_SystemException.Message.substring(0,7).Replace("-","").Trim]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Envoyer Mail - Invoke Workflow File (Process\Rapports\Envoyer Mail.xaml)" sap:VirtualizedContainerService.HintSize="434,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\Rapports\Envoyer Mail.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_to">[in_Config("Destinataire").ToString]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_Object">[in_Config("object"+code).ToString]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_Body">[in_Config("body"+code).ToString]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_pj">[in_screenshotPath]</InArgument>
+                                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:InvokeWorkflowFile>
+                                </Sequence>
+                              </If.Then>
+                              <If.Else>
+                                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Envoyer Mail - Invoke Workflow File (Process\Rapports\Envoyer Mail.xaml)" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Process\Rapports\Envoyer Mail.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_to">[in_Config("objectBE099").ToString]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_Object">Erreur</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_Body">[in_Config("bodyBE099").ToString]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_pj">[in_screenshotPath]</InArgument>
+                                      <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:InvokeWorkflowFile>
+                                </Sequence>
+                              </If.Else>
+                            </If>
+                          </Sequence>
                         </FlowStep>
                       </FlowStep.Next>
                     </FlowStep>

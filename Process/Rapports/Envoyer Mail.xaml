@@ -1,10 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Séquence" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Séquence" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_to" Type="InArgument(x:String)" />
     <x:Property Name="in_Object" Type="InArgument(x:String)" />
     <x:Property Name="in_Body" Type="InArgument(x:String)" />
     <x:Property Name="in_pj" Type="InArgument(x:String)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
+  <this:Séquence.in_Config>
+    <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" />
+  </this:Séquence.in_Config>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
@@ -57,6 +61,7 @@
       <x:String>System.Security</x:String>
       <x:String>UiPath.Mail.Exchange.Activities</x:String>
       <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -126,7 +131,7 @@
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Séquence" sap:VirtualizedContainerService.HintSize="1062.6666666666667,1204.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Séquence" sap:VirtualizedContainerService.HintSize="1072.6666666666667,558" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="C:\Users\Walid ABRA\Documents\UiPath\LRE Automation Performer\Data\Input\test\PDD sortie.pdf" Name="pathFilePdf" />
     </Sequence.Variables>
@@ -135,102 +140,122 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="570,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Fatal" Message="[&quot;Envoie Mail - &quot;]" />
-    <If Condition="[String.IsNullOrEmpty(in_pj)]" sap:VirtualizedContainerService.HintSize="570,1005.3333333333334" sap2010:WorkflowViewState.IdRef="If_1">
-      <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Fatal" Message="[&quot;Envoie Mail - &quot;]" />
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="434,358.6666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <If Condition="[String.IsNullOrEmpty(in_pj)]" sap:VirtualizedContainerService.HintSize="570,1010.6666666666666" sap2010:WorkflowViewState.IdRef="If_1">
+          <If.Then>
+            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <umab:OutlookApplicationCard Account="{x:Null}" AccountMismatchBehavior="UseDefaultEmailAccount" DisplayName="Use Desktop Outlook App" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_2">
+                <umab:OutlookApplicationCard.Body>
+                  <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="468,484" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <umab:SendMailX Bcc="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Outlook]" Body="[in_Body]" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="434,424" sap2010:WorkflowViewState.IdRef="SendMailX_5" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="[in_Object]" To="[in_to]" UseDocumentAsBody="False">
+                        <umab:SendMailX.Files>
+                          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                        </umab:SendMailX.Files>
+                        <umab:SendMailX.HtmlBodyFromFile>
+                          <umabh:HtmlContentArgument FilePath="{x:Null}" HtmlBody="{x:Null}">
+                            <umabh:HtmlContentArgument.RuntimeImages>
+                              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                            </umabh:HtmlContentArgument.RuntimeImages>
+                            <umabh:HtmlContentArgument.ValueMappings>
+                              <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="0" />
+                            </umabh:HtmlContentArgument.ValueMappings>
+                          </umabh:HtmlContentArgument>
+                        </umab:SendMailX.HtmlBodyFromFile>
+                      </umab:SendMailX>
+                    </Sequence>
+                  </ActivityAction>
+                </umab:OutlookApplicationCard.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </umab:OutlookApplicationCard>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="536,762.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <umab:OutlookApplicationCard Account="{x:Null}" AccountMismatchBehavior="UseDefaultEmailAccount" DisplayName="Use Desktop Outlook App" sap:VirtualizedContainerService.HintSize="502,702.6666666666666" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_3">
+                <umab:OutlookApplicationCard.Body>
+                  <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="468,492" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <umab:SendMailX Bcc="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Outlook]" Body="[in_Body]" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="434,432" sap2010:WorkflowViewState.IdRef="SendMailX_4" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="[in_Object]" To="[in_to]" UseDocumentAsBody="False">
+                        <umab:SendMailX.Files>
+                          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
+                            <InArgument x:TypeArguments="x:String">[in_pj]</InArgument>
+                          </scg:List>
+                        </umab:SendMailX.Files>
+                        <umab:SendMailX.HtmlBodyFromFile>
+                          <umabh:HtmlContentArgument FilePath="{x:Null}" HtmlBody="{x:Null}">
+                            <umabh:HtmlContentArgument.RuntimeImages>
+                              <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                            </umabh:HtmlContentArgument.RuntimeImages>
+                            <umabh:HtmlContentArgument.ValueMappings>
+                              <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="0" />
+                            </umabh:HtmlContentArgument.ValueMappings>
+                          </umabh:HtmlContentArgument>
+                        </umab:SendMailX.HtmlBodyFromFile>
+                      </umab:SendMailX>
+                    </Sequence>
+                  </ActivityAction>
+                </umab:OutlookApplicationCard.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </umab:OutlookApplicationCard>
+            </Sequence>
+          </If.Else>
+        </If>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,164" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <umab:OutlookApplicationCard Account="{x:Null}" AccountMismatchBehavior="UseDefaultEmailAccount" DisplayName="Use Desktop Outlook App" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_2">
-            <umab:OutlookApplicationCard.Body>
-              <ActivityAction x:TypeArguments="um:IMailQuickHandle">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="468,484" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <umab:SendMailX Bcc="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Outlook]" Body="[in_Body]" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="434,424" sap2010:WorkflowViewState.IdRef="SendMailX_5" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="[in_Object]" To="[in_to]" UseDocumentAsBody="False">
-                    <umab:SendMailX.Files>
-                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-                    </umab:SendMailX.Files>
-                    <umab:SendMailX.HtmlBodyFromFile>
-                      <umabh:HtmlContentArgument FilePath="{x:Null}" HtmlBody="{x:Null}">
-                        <umabh:HtmlContentArgument.RuntimeImages>
-                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                        </umabh:HtmlContentArgument.RuntimeImages>
-                        <umabh:HtmlContentArgument.ValueMappings>
-                          <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="0" />
-                        </umabh:HtmlContentArgument.ValueMappings>
-                      </umabh:HtmlContentArgument>
-                    </umab:SendMailX.HtmlBodyFromFile>
-                  </umab:SendMailX>
-                </Sequence>
-              </ActivityAction>
-            </umab:OutlookApplicationCard.Body>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </umab:OutlookApplicationCard>
-        </Sequence>
-      </If.Then>
-      <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="536,734.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_3">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <umab:OutlookApplicationCard Account="{x:Null}" AccountMismatchBehavior="UseDefaultEmailAccount" DisplayName="Use Desktop Outlook App" sap:VirtualizedContainerService.HintSize="502,674.6666666666666" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_3">
-            <umab:OutlookApplicationCard.Body>
-              <ActivityAction x:TypeArguments="um:IMailQuickHandle">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="468,464" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <umab:SendMailX Bcc="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Outlook]" Body="[in_Body]" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="434,404" sap2010:WorkflowViewState.IdRef="SendMailX_4" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="[in_Object]" To="[in_to]" UseDocumentAsBody="False">
-                    <umab:SendMailX.Files>
-                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
-                        <InArgument x:TypeArguments="x:String">[in_pj]</InArgument>
-                      </scg:List>
-                    </umab:SendMailX.Files>
-                    <umab:SendMailX.HtmlBodyFromFile>
-                      <umabh:HtmlContentArgument FilePath="{x:Null}" HtmlBody="{x:Null}">
-                        <umabh:HtmlContentArgument.RuntimeImages>
-                          <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
-                        </umabh:HtmlContentArgument.RuntimeImages>
-                        <umabh:HtmlContentArgument.ValueMappings>
-                          <scg:List x:TypeArguments="umabh:HtmlValueMappingBase" Capacity="0" />
-                        </umabh:HtmlContentArgument.ValueMappings>
-                      </umabh:HtmlContentArgument>
-                    </umab:SendMailX.HtmlBodyFromFile>
-                  </umab:SendMailX>
-                </Sequence>
-              </ActivityAction>
-            </umab:OutlookApplicationCard.Body>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </umab:OutlookApplicationCard>
-        </Sequence>
-      </If.Else>
-    </If>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Throw DisplayName="Throw BE007 Outlook" Exception="[New SystemException(&quot;BE007 -&quot;+in_Config(&quot;BE007&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="Throw_1" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
   </Sequence>
 </Activity>
