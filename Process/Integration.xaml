@@ -119,7 +119,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1062.6666666666667,2532" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="1072.6666666666667,2532" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="si:DirectoryInfo" Name="folderInfo" />
     </Sequence.Variables>
@@ -174,15 +174,16 @@
           </Assign>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="creer un fichier xml global" sap:VirtualizedContainerService.HintSize="450,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Extraction\createXmlGlobal.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_filePath">[in_Config("folderPathTmp").ToString+"\MATMUTRPA_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_filePath">[in_Config("folderPathTmp").ToString+"\"+in_Config("Domaine").ToString+"_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_date">[dateGlobal.ToString("yyyyMMddHHmmss")]</InArgument>
               <InArgument x:TypeArguments="x:Int32" x:Key="in_numPlis">[Convert.ToInt32(folderInfo.GetFiles.Count/2)]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_domaine">[in_Config("Domaine").ToString]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <uascw:CompressFiles CompressedResource="{x:Null}" Password="{x:Null}" ResourcesToArchive="{x:Null}" SecurePassword="{x:Null}" AllowDuplicateContentNames="False" CodePage="Default" CompressedFileInfo="[fileInfo]" CompressedFileName="[&quot;MATMUTRPA_&quot;+Now.ToString(&quot;yyyyMMdd_HHmmss&quot;)+&quot;_&quot;+in_idLot.ToString(&quot;D9&quot;)+&quot;.zip&quot;]" CompressionLevel="Normal" DisplayName="Créer un fichier ZIP" EncryptionAlgorithm="Classic" sap:VirtualizedContainerService.HintSize="450,252.66666666666666" sap2010:WorkflowViewState.IdRef="CompressFiles_1" OverrideExistingFile="True">
+          <uascw:CompressFiles CompressedResource="{x:Null}" Password="{x:Null}" ResourcesToArchive="{x:Null}" SecurePassword="{x:Null}" AllowDuplicateContentNames="False" CodePage="Default" CompressedFileInfo="[fileInfo]" CompressedFileName="[in_Config(&quot;Domaine&quot;).ToString+&quot;_&quot;+Now.ToString(&quot;yyyyMMdd_HHmmss&quot;)+&quot;_&quot;+in_idLot.ToString(&quot;D9&quot;)+&quot;.zip&quot;]" CompressionLevel="Normal" DisplayName="Créer un fichier ZIP" EncryptionAlgorithm="Classic" sap:VirtualizedContainerService.HintSize="450,252.66666666666666" sap2010:WorkflowViewState.IdRef="CompressFiles_1" OverrideExistingFile="True">
             <uascw:CompressFiles.ContentToArchive>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
-                <InArgument x:TypeArguments="x:String">[files+"|"+in_Config("folderPathTmp").ToString+"\MATMUTRPA_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")+".xml"]</InArgument>
+                <InArgument x:TypeArguments="x:String">[files+"|"+in_Config("folderPathTmp").ToString+"\"+in_Config("Domaine").ToString+"_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")+".xml"]</InArgument>
               </scg:List>
             </uascw:CompressFiles.ContentToArchive>
             <sap:WorkflowViewStateService.ViewState>

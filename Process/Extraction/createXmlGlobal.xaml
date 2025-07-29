@@ -3,6 +3,7 @@
     <x:Property Name="in_filePath" Type="InArgument(x:String)" />
     <x:Property Name="in_date" Type="InArgument(x:String)" />
     <x:Property Name="in_numPlis" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_domaine" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -220,9 +221,10 @@
       <AssemblyReference>System.Xml.XPath.XDocument</AssemblyReference>
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="createXml" sap:VirtualizedContainerService.HintSize="1062.6666666666667,736" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="createXml" sap:VirtualizedContainerService.HintSize="1072.6666666666667,736" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="xmlResult" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dataXml" />
@@ -237,13 +239,13 @@
     <ui:MultipleAssign DisplayName="Initialiser le dictionnaire " sap:VirtualizedContainerService.HintSize="478.6666666666667,149.33333333333334" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+          <ui:AssignOperation sap:VirtualizedContainerService.HintSize="334,25.33333333333333" sap2010:WorkflowViewState.IdRef="AssignOperation_2">
             <ui:AssignOperation.To>
               <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[dataXml]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" xml:space="preserve">[New Dictionary(Of String, String) From {
-    {"DOMAIN", "MATMUTRPA"},
+    {"DOMAIN", in_domaine},
     {"NB_PLIS",in_numPlis.ToString},
     {"DATE_VACATION", in_date}
 }]</InArgument>

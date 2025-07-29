@@ -91,7 +91,7 @@
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="VerifierDossiers" sap:VirtualizedContainerService.HintSize="1072.6666666666667,2648" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="VerifierDossiers" sap:VirtualizedContainerService.HintSize="1072.6666666666667,1373.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="folders" />
     </Sequence.Variables>
@@ -100,7 +100,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="init folders" sap:VirtualizedContainerService.HintSize="666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <ui:LogMessage DisplayName="Log Message verifier dossier" sap:VirtualizedContainerService.HintSize="450,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;VerifierDossiers - verifier l'existence des dossiers&quot;]" />
+    <Assign DisplayName="init folders" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[folders]</OutArgument>
       </Assign.To>
@@ -114,7 +115,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="folderPathRoot" sap:VirtualizedContainerService.HintSize="666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign DisplayName="folderPathRoot" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[folders]</OutArgument>
       </Assign.To>
@@ -128,7 +129,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="folderInProgressFolder" sap:VirtualizedContainerService.HintSize="666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <Assign DisplayName="folderInProgressFolder" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[folders]</OutArgument>
       </Assign.To>
@@ -142,7 +143,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="folderNetworkFolder" sap:VirtualizedContainerService.HintSize="666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="folderNetworkFolder" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[folders]</OutArgument>
       </Assign.To>
@@ -156,7 +157,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="folderPathManuel" sap:VirtualizedContainerService.HintSize="666,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign DisplayName="folderPathManuel" sap:VirtualizedContainerService.HintSize="450,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[folders]</OutArgument>
       </Assign.To>
@@ -170,7 +171,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="folderPathTraites" sap:VirtualizedContainerService.HintSize="666,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="folderPathTraites" sap:VirtualizedContainerService.HintSize="450,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[folders]</OutArgument>
       </Assign.To>
@@ -184,7 +185,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="folderPathTmp" sap:VirtualizedContainerService.HintSize="666,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign DisplayName="folderPathTmp" sap:VirtualizedContainerService.HintSize="450,57.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[folders]</OutArgument>
       </Assign.To>
@@ -198,7 +199,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="folderReport" sap:VirtualizedContainerService.HintSize="666,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
+    <Assign DisplayName="folderReport" sap:VirtualizedContainerService.HintSize="450,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[folders]</OutArgument>
       </Assign.To>
@@ -212,13 +213,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each currentText" sap:VirtualizedContainerService.HintSize="666,1866.6666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[folders]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="pour chaque dossier" sap:VirtualizedContainerService.HintSize="450,415.3333333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[folders]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="632,1728" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="416,276.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="folderExist" />
             </Sequence.Variables>
@@ -227,16 +228,16 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:FolderExistsX DisplayName="Folder Exists" Exists="[folderExist]" sap:VirtualizedContainerService.HintSize="598,168.66666666666666" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[currentText]" />
-            <ui:IfElseIfV2 Condition="[folderExist]" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="598,1155.3333333333333" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+            <ui:FolderExistsX DisplayName="Folder Exists" Exists="[folderExist]" sap:VirtualizedContainerService.HintSize="382,168.66666666666666" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[currentText]" />
+            <ui:IfElseIfV2 Condition="[folderExist]" DisplayName="Regles d'existence pour chaque dossier" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
               <ui:IfElseIfV2.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,174.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence DisplayName="autre dossier non mentionné" sap:VirtualizedContainerService.HintSize="416,174.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Throw DisplayName="Throw BE002" Exception="[New System.Exception(&quot;BE008 - &quot;+in_Config(&quot;BE008&quot;).ToString+&quot; - &quot; + currentText.ToString() + &quot; introuvable&quot;)]" sap:VirtualizedContainerService.HintSize="382,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                  <Throw DisplayName="Throw BE008" Exception="[New System.Exception(&quot;BE008 - &quot;+in_Config(&quot;BE008&quot;).ToString+&quot; - &quot; + currentText.ToString() + &quot; introuvable&quot;)]" sap:VirtualizedContainerService.HintSize="382,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_5" />
                 </Sequence>
               </ui:IfElseIfV2.Else>
               <ui:IfElseIfV2.ElseIfs>
@@ -279,6 +280,12 @@
                   </ui:IfElseIfBlock>
                 </sc:BindingList>
               </ui:IfElseIfV2.ElseIfs>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
               <ui:IfElseIfV2.Then>
                 <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
@@ -289,26 +296,6 @@
                 </Sequence>
               </ui:IfElseIfV2.Then>
             </ui:IfElseIfV2>
-            <If Condition="[folderExist]" sap:VirtualizedContainerService.HintSize="598,344" sap2010:WorkflowViewState.IdRef="If_1">
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </Sequence>
-              </If.Else>
-            </If>
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>

@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="createXml" this:createXml.in_filePath="C:\Users\Walid ABRA\Documents\LRE\Inprogress\20250716_193130_MATMUTRPA_000000001.pdf" this:createXml.in_date="[Now]" this:createXml.in_idDocument="1" this:createXml.in_idLot="1" this:createXml.in_numeroSocietaitre="980003642432U8F" this:createXml.in_nameFile="20250716_193130_MATMUTRPA_000000001.pdf" this:createXml.in_numPage="1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="createXml" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_filePath" Type="InArgument(x:String)" />
     <x:Property Name="in_date" Type="InArgument(s:DateTime)" />
@@ -224,9 +224,10 @@
       <AssemblyReference>System.Xml.XPath.XDocument</AssemblyReference>
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="createXml" sap:VirtualizedContainerService.HintSize="1062.6666666666667,766.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="createXml" sap:VirtualizedContainerService.HintSize="1072.6666666666667,766.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="xmlResult" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="dataXml" />
