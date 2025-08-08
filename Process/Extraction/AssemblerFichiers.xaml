@@ -109,7 +109,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Séquence" sap:VirtualizedContainerService.HintSize="1755,1803" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Assembler Pages PDF" sap:VirtualizedContainerService.HintSize="2789,1733" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="si:DirectoryInfo" Name="fileinfo" />
       <Variable x:TypeArguments="si:FileInfo[]" Name="files" />
@@ -121,9 +121,9 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="572,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;AssemblerFichiers - Assemblage des pages pdf&quot;]" />
-    <ui:GetFolderInfoX DisplayName="Get Folder Info" FolderPath="[in_pathFolder]" sap:VirtualizedContainerService.HintSize="572,165" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_3" Output="[fileinfo]" ThrowIfNotExists="False" />
-    <Assign sap:VirtualizedContainerService.HintSize="572,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <ui:LogMessage DisplayName="Log Start Message" sap:VirtualizedContainerService.HintSize="506,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;AssemblerFichiers - Assemblage des pages pdf&quot;]" />
+    <ui:GetFolderInfoX DisplayName="Récuperer les infos du dossier" FolderPath="[in_pathFolder]" sap:VirtualizedContainerService.HintSize="506,167" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_3" Output="[fileinfo]" ThrowIfNotExists="False" />
+    <Assign DisplayName="mettre les fichiers pdf trouvé sur le dossier" sap:VirtualizedContainerService.HintSize="506,115" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="si:FileInfo[]">[files]</OutArgument>
       </Assign.To>
@@ -131,13 +131,13 @@
         <InArgument x:TypeArguments="si:FileInfo[]">[fileinfo.GetFiles("*.pdf").ToArray]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[index]" DisplayName="For Each CurrentFile" sap:VirtualizedContainerService.HintSize="572,1328" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[files]">
+    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[index]" DisplayName="pour chaque fichier trouvé" sap:VirtualizedContainerService.HintSize="506,1253" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[files]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="si:FileInfo">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="538,1191" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="504,1131" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Boolean" Name="hasNumber" />
             </Sequence.Variables>
@@ -146,15 +146,15 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="VerifierExistenceNumero - Invoke Workflow File (Process\VerifierExistenceNumero.xaml)" sap:VirtualizedContainerService.HintSize="504,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Extraction\VerifierExistenceNumero.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Verifier si la page contient un numero" sap:VirtualizedContainerService.HintSize="470,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Process\Extraction\VerifierExistenceNumero.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[CurrentFile.FullName]</InArgument>
                 <OutArgument x:TypeArguments="x:Boolean" x:Key="out_numberExist">[hasNumber]</OutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:IfElseIfV2 Condition="[hasNumber and index=0]" DisplayName="Else If" sap:VirtualizedContainerService.HintSize="504,954" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+            <ui:IfElseIfV2 Condition="[hasNumber and index=0]" DisplayName="Differents cas " sap:VirtualizedContainerService.HintSize="471,871" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
               <ui:IfElseIfV2.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence DisplayName="Ne rien faire sinon" sap:VirtualizedContainerService.HintSize="469,90" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -164,15 +164,15 @@
               </ui:IfElseIfV2.Else>
               <ui:IfElseIfV2.ElseIfs>
                 <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
-                  <ui:IfElseIfBlock BlockType="ElseIf" Condition="[hasNumber]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_1">
+                  <ui:IfElseIfBlock BlockType="ElseIf" Condition="[hasNumber]" DisplayName="If else if block" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_1">
                     <ui:IfElseIfBlock.Then>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                      <Sequence DisplayName="pages suivant qui ont un numero " sap:VirtualizedContainerService.HintSize="469,166" sap2010:WorkflowViewState.IdRef="Sequence_8">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign DisplayName="pointer l'index sur le fichier pour fusionner avec la suivante qui n'a pas de numero 2" sap:VirtualizedContainerService.HintSize="435,106" sap2010:WorkflowViewState.IdRef="Assign_3">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[lastfile]</OutArgument>
                           </Assign.To>
@@ -185,13 +185,13 @@
                   </ui:IfElseIfBlock>
                   <ui:IfElseIfBlock BlockType="ElseIf" Condition="[hasNumber=False and String.IsNullOrEmpty(lastFile)=false]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_3">
                     <ui:IfElseIfBlock.Then>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <Sequence DisplayName="si la page n'a pas de numero fusionner avec la page precedente" sap:VirtualizedContainerService.HintSize="469,228" sap2010:WorkflowViewState.IdRef="Sequence_10">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="FusionnerPDF - Invoke Workflow File (Process\utilities\FusionnerPDF.xaml)" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\utilities\FusionnerPDF.xaml">
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Fusionner les deux PDF" sap:VirtualizedContainerService.HintSize="435,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Process\utilities\FusionnerPDF.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
                             <InArgument x:TypeArguments="x:String" x:Key="in_pathFile1">[lastfile]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_pathFile2">[CurrentFile.FullName]</InArgument>
@@ -209,13 +209,13 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:IfElseIfV2.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <Sequence DisplayName="Premiere page et contient un numero" sap:VirtualizedContainerService.HintSize="469,166" sap2010:WorkflowViewState.IdRef="Sequence_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign DisplayName="pointer l'index sur le fichier pour fusionner avec la suivante qui n'a pas de numero" sap:VirtualizedContainerService.HintSize="435,106" sap2010:WorkflowViewState.IdRef="Assign_1">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[lastfile]</OutArgument>
                     </Assign.To>

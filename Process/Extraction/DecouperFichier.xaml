@@ -84,9 +84,10 @@
       <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="splitFile" sap:VirtualizedContainerService.HintSize="2796.6666666666665,790" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="splitFile" sap:VirtualizedContainerService.HintSize="2795,985.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="index" />
       <Variable x:TypeArguments="x:Int32" Name="count" />
@@ -96,17 +97,17 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Decoupage" sap:VirtualizedContainerService.HintSize="450,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;splitFile - Découper le fichier PDF &quot;]" />
-    <upap:GetPDFPageCount DisplayName="Récuperer le nombre de page" FileName="[in_pathPdf]" sap:VirtualizedContainerService.HintSize="450,116" sap2010:WorkflowViewState.IdRef="GetPDFPageCount_1" PageCount="[count]" />
-    <ui:InterruptibleWhile Condition="[index&lt;count]" CurrentIndex="[index]" DisplayName="Tant que le parcours du fichier n'est pas fini " sap:VirtualizedContainerService.HintSize="450,370" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+    <ui:LogMessage DisplayName="Log Message Decoupage" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;splitFile - Découper le fichier PDF en plusieurs pages (de 1)  &quot;]" />
+    <upap:GetPDFPageCount DisplayName="Récuperer le nombre de page" FileName="[in_pathPdf]" sap:VirtualizedContainerService.HintSize="452,115" sap2010:WorkflowViewState.IdRef="GetPDFPageCount_1" PageCount="[count]" />
+    <ui:InterruptibleWhile Condition="[index&lt;count]" CurrentIndex="[index]" DisplayName="Tant que le parcours du fichier n'est pas fini " sap:VirtualizedContainerService.HintSize="452,351" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
       <ui:InterruptibleWhile.Body>
-        <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="416,222" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="450,220" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <upap:ExtractPDFPageRange DisplayName="Extraire la page" FileName="[in_pathPdf]" sap:VirtualizedContainerService.HintSize="382,162" sap2010:WorkflowViewState.IdRef="ExtractPDFPageRange_1" OutputFileName="[in_pathPdf.Replace(&quot;.pdf&quot;,&quot;_&quot;+(index+1).ToString(&quot;D2&quot;)+&quot;.pdf&quot;)]" Range="[(index+1).ToString+&quot;-&quot;+(index+1).ToString]" />
+          <upap:ExtractPDFPageRange DisplayName="Extraire la page" FileName="[in_pathPdf]" sap:VirtualizedContainerService.HintSize="416,160" sap2010:WorkflowViewState.IdRef="ExtractPDFPageRange_1" OutputFileName="[in_pathPdf.Replace(&quot;.pdf&quot;,&quot;_&quot;+(index+1).ToString(&quot;D2&quot;)+&quot;.pdf&quot;)]" Range="[(index+1).ToString+&quot;-&quot;+(index+1).ToString]" />
         </Sequence>
       </ui:InterruptibleWhile.Body>
       <sap:WorkflowViewStateService.ViewState>
@@ -116,6 +117,6 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InterruptibleWhile>
-    <ui:DeleteFileX DisplayName="Supprimer le fichier source" sap:VirtualizedContainerService.HintSize="450,104.66666666666667" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_pathPdf]" />
+    <ui:DeleteFileX DisplayName="Supprimer le fichier source" sap:VirtualizedContainerService.HintSize="452,104" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[in_pathPdf]" />
   </Sequence>
 </Activity>

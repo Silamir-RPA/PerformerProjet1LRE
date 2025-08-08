@@ -1,4 +1,5 @@
-﻿<Activity mc:Ignorable="sap sap2010" x:Class="ExtractOnefilePDF" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractOnefilePDF" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="io_idDocument" Type="InOutArgument(x:Int32)" />
@@ -119,7 +120,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1755,2161" sap2010:WorkflowViewState.IdRef="Sequence_43">
+  <Sequence sap:VirtualizedContainerService.HintSize="2635,2161" sap2010:WorkflowViewState.IdRef="Sequence_43">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -137,7 +138,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Lire Pdf pour verifier si santé prevoyance" FileName="[in_pathFilePdf]" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="ReadPDFText_2" Range="All" Text="[txtPdf]" />
-      <If Condition="[txtPdf.ToLower.Contains(&quot;santé&quot;) or txtPdf.ToLower.Contains(&quot;prévoyance&quot;)]" DisplayName="Exception Existaence du mot Santé et Prévoyance" sap:VirtualizedContainerService.HintSize="450,432" sap2010:WorkflowViewState.IdRef="If_16">
+      <If Condition="[txtPdf.ToLower.Contains(&quot;santé&quot;) or txtPdf.ToLower.Contains(&quot;prévoyance&quot;) or txtPdf.ToLower.Contains(&quot;sante&quot;) or txtPdf.ToLower.Contains(&quot;prevoyance&quot;)]" DisplayName="Exception Existaence du mot Santé et Prévoyance" sap:VirtualizedContainerService.HintSize="450,432" sap2010:WorkflowViewState.IdRef="If_16">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -151,7 +152,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Throw DisplayName="Throw BE012 Existance Santé" Exception="[New BusinessRuleException(&quot;BE012 -&quot;+in_Config(&quot;BE012&quot;).toString)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_7">
+            <Throw DisplayName="Throw BE012 Existance Santé" Exception="[New BusinessRuleException(&quot;BE012 - &quot;+in_Config(&quot;BE012&quot;).toString)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_7">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -219,7 +220,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:InvokeWorkflowFile>
-      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Creer fichier XML" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Process\Extraction\createXml.xaml">
+      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Creer fichier XML" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="Process\Extraction\GénérerXML.xaml">
         <ui:InvokeWorkflowFile.Arguments>
           <InArgument x:TypeArguments="x:String" x:Key="in_filePath">[in_pathFilePdf]</InArgument>
           <InArgument x:TypeArguments="s:DateTime" x:Key="in_date">[Now]</InArgument>

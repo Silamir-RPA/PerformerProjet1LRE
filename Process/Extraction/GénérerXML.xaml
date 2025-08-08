@@ -1,9 +1,12 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="createXml" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="createXml" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_filePath" Type="InArgument(x:String)" />
-    <x:Property Name="in_date" Type="InArgument(x:String)" />
-    <x:Property Name="in_numPlis" Type="InArgument(x:Int32)" />
-    <x:Property Name="in_domaine" Type="InArgument(x:String)" />
+    <x:Property Name="in_date" Type="InArgument(s:DateTime)" />
+    <x:Property Name="in_idDocument" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_idLot" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_numeroSocietaitre" Type="InArgument(x:String)" />
+    <x:Property Name="in_nameFile" Type="InArgument(x:String)" />
+    <x:Property Name="in_numPage" Type="InArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -224,10 +227,11 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="createXml" sap:VirtualizedContainerService.HintSize="1072.6666666666667,736" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="createXml" sap:VirtualizedContainerService.HintSize="2795,985.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="xmlResult" />
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dataXml" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="dataXml" />
+      <Variable x:TypeArguments="scg:List(scg:Dictionary(x:String, x:Object))" Name="documents" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -235,31 +239,62 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Create XML Global" sap:VirtualizedContainerService.HintSize="478.6666666666667,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Creer fichier XML Global&quot;]" />
-    <ui:MultipleAssign DisplayName="Initialiser le dictionnaire " sap:VirtualizedContainerService.HintSize="478.6666666666667,149.33333333333334" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:LogMessage DisplayName="Log Message Create XML" sap:VirtualizedContainerService.HintSize="478,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Générer le fichier XML à partir du fichier PDF&quot;]" />
+    <ui:MultipleAssign DisplayName="Construite le dictionnaire à sérialiser" sap:VirtualizedContainerService.HintSize="478,180" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
-          <ui:AssignOperation sap:VirtualizedContainerService.HintSize="334,25.33333333333333" sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
             <ui:AssignOperation.To>
-              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[dataXml]</OutArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[dataXml]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" xml:space="preserve">[New Dictionary(Of String, String) From {
-    {"DOMAIN", in_domaine},
-    {"NB_PLIS",in_numPlis.ToString},
-    {"DATE_VACATION", in_date}
+              <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" xml:space="preserve">[New Dictionary(Of String, Object) From {
+    {"ID_PLI", in_date.toString("yyyyMMdd")+"-RPA-000001-01-"+in_idLot.ToString("D3")+"-"+in_idDocument.ToString("D3")},
+    {"NUM_LOT", in_date.toString("yyyyMMdd")+"-RPA-000001-01-"+in_idLot.ToString("D3")},
+    {"BOITE_ARCHIVE", "000001"},
+    {"SITE_NUM", "RPA"},
+    {"SCANNER", "01"},
+    {"NB_DOCUMENTS", "01"},
+    {"NB_PAGES", in_numPage.ToString("D4")},
+    {"TYPE_TRAITEMENT", "ROBOT"},
+    {"TYPE_PLI", "PRODUCTION"},
+    {"CANAL", "SIEGE"},
+    {"NUM_ASSURE_PRINCIPALE", in_numeroSocietaitre},
+    {"NOM_PDF", in_nameFile},
+    {"CLE", "NON APPLICABLE"},
+    {"DATE_RECEPTION", in_date.toString("yyyyMMddHHmm")},
+    {"DATE_NUMERISATION", in_date.toString("yyyyMMddHHmmss")}
 }]</InArgument>
+            </ui:AssignOperation.Value>
+          </ui:AssignOperation>
+          <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+            <ui:AssignOperation.To>
+              <OutArgument x:TypeArguments="scg:List(scg:Dictionary(x:String, x:Object))">[documents]</OutArgument>
+            </ui:AssignOperation.To>
+            <ui:AssignOperation.Value>
+              <InArgument x:TypeArguments="scg:List(scg:Dictionary(x:String, x:Object))" xml:space="preserve">[New List(Of Dictionary(Of String, Object)) From {
+    New Dictionary(Of String, Object) From {
+        {"ID_DOC", in_date.toString("yyyyMMdd")+"-RPA-000001-01-"+in_idLot.ToString("D3")+"-"+in_idDocument.ToString("D3")+"-001"},
+        {"NUM_DOCUMENT", "001"},
+        {"LIBELLE_DOCUMENT", "RESILIATION HAMON"},
+        {"NB_PAGES", in_numPage.ToString("D4")},
+        {"NUM_ASSURE",in_numeroSocietaitre},
+        {"LISIBILITE", "0"},
+        {"TAMPON_COPIE", "N"}
+    }
+	}]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="&#xA;&#xA;Dim xmlElem As New XElement(&quot;VACATION&quot;)&#xA;For Each kvp In myDict&#xA;    xmlElem.Add(New XElement(kvp.Key, kvp.Value))&#xA;Next&#xA;&#xA;xmlOutput = xmlElem.ToString()&#xA;" DisplayName="Serialiser le dictionnaire en xml" sap:VirtualizedContainerService.HintSize="478.6666666666667,197.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="&#xA;myDict(&quot;DOCUMENTS&quot;)=doc&#xA;' Fonction  pour transformer dictionnaire en XElement&#xA;Dim DictToXml As Func(Of Dictionary(Of String, Object), String, XElement) =&#xA;    Function(dict, rootName)&#xA;        Dim root As New XElement(rootName)&#xA;        For Each kvp In dict&#xA;            If TypeOf kvp.Value Is List(Of Dictionary(Of String, Object)) Then&#xA;                ' Gestion des listes (ex : DOCUMENTS)&#xA;                Dim childList = DirectCast(kvp.Value, List(Of Dictionary(Of String, Object)))&#xA;                Dim listElem As New XElement(kvp.Key)&#xA;                For Each elemDict In childList&#xA;                    listElem.Add(DictToXml(elemDict, &quot;DOCUMENT&quot;))&#xA;                Next&#xA;                root.Add(listElem)&#xA;            Else&#xA;                root.Add(New XElement(kvp.Key, If(kvp.Value, &quot;&quot;)))&#xA;            End If&#xA;        Next&#xA;        Return root&#xA;    End Function&#xA;&#xA;Dim xmlElem As XElement = DictToXml(myDict, &quot;PLI&quot;)&#xA;xmlOutput = xmlElem.ToString()&#xA;" DisplayName="Sérialiser le dictionnaire en xml" sap:VirtualizedContainerService.HintSize="478,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="myDict ">[dataXml]</InArgument>
+        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="myDict ">[dataXml]</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="xmlOutput">[xmlResult]</OutArgument>
+        <InArgument x:TypeArguments="scg:List(scg:Dictionary(x:String, x:Object))" x:Key="doc">[documents]</InArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
-    <ui:WriteTextFile File="{x:Null}" DisplayName="Creer le Xml Global" FileName="[in_filePath+&quot;.xml&quot;]" sap:VirtualizedContainerService.HintSize="478.6666666666667,159.33333333333334" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[xmlResult]" />
+    <ui:WriteTextFile File="{x:Null}" DisplayName="Créer le fichier XML" FileName="[in_filePath.Replace(&quot;.pdf&quot;,&quot;.xml&quot;)]" sap:VirtualizedContainerService.HintSize="478,158" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[xmlResult]" />
   </Sequence>
 </Activity>
