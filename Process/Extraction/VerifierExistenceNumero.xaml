@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="extractMembershipNumber" this:extractMembershipNumber.in_pathFile="C:\Users\Walid ABRA\Documents\UiPath\LRE Automation Performer\Data\Input\LRE ROBOT - Copie\tessi_700-50842b6b-c5bf-4c18-bc16-877c4c658790.pdf" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="extractMembershipNumber" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_pathFile" Type="InArgument(x:String)" />
     <x:Property Name="out_numberExist" Type="OutArgument(x:Boolean)" />
@@ -98,7 +98,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="extractMembershipNumber" sap:VirtualizedContainerService.HintSize="2789,1167" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="extractMembershipNumber" sap:VirtualizedContainerService.HintSize="2806,1179" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="txtString" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="listMatch" />
@@ -110,8 +110,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Start Message" sap:VirtualizedContainerService.HintSize="506,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Verifier SI un fichier PDF possede un numéro societaire&quot;]" />
-    <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Lire le fichier PDF" FileName="[in_pathFile]" sap:VirtualizedContainerService.HintSize="506,115" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[txtString]">
+    <ui:LogMessage DisplayName="Log Start Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Verifier SI un fichier PDF possede un numéro societaire&quot;]" />
+    <ui:ReadPDFText PreserveFormatting="{x:Null}" DisplayName="Lire le fichier PDF" FileName="[in_pathFile]" sap:VirtualizedContainerService.HintSize="538,114" sap2010:WorkflowViewState.IdRef="ReadPDFText_1" Range="All" Text="[txtString]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -119,7 +119,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ReadPDFText>
-    <ui:IfElseIfV2 Condition="[txtString.ToLower.Contains(&quot;monsieur&quot;)]" DisplayName="Enlever l'entete de la lettre" sap:VirtualizedContainerService.HintSize="506,57" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+    <ui:IfElseIfV2 Condition="[txtString.ToLower.Contains(&quot;monsieur&quot;)]" DisplayName="Enlever l'entete de la lettre" sap:VirtualizedContainerService.HintSize="538,57" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
       <ui:IfElseIfV2.Else>
         <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_13">
           <sap:WorkflowViewStateService.ViewState>
@@ -195,7 +195,7 @@
         </Sequence>
       </ui:IfElseIfV2.Then>
     </ui:IfElseIfV2>
-    <Assign DisplayName="Appliquer la regle regex pour numero societaire 12 chifres et une lettre" sap:VirtualizedContainerService.HintSize="506,57" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Appliquer la regle regex pour numero societaire 12 chifres et une lettre" sap:VirtualizedContainerService.HintSize="538,57" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:List(x:String)">[listMatch]</OutArgument>
       </Assign.To>
@@ -209,7 +209,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="Enlever les espaces" sap:VirtualizedContainerService.HintSize="506,57" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign DisplayName="Enlever les espaces" sap:VirtualizedContainerService.HintSize="538,57" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="scg:List(x:String)">[listMatch]</OutArgument>
       </Assign.To>
@@ -223,7 +223,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[index]" DisplayName="a chaque fois qu'on trouve une réference dans le pdf" sap:VirtualizedContainerService.HintSize="506,577" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[listMatch]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[index]" DisplayName="a chaque fois qu'on trouve une réference dans le pdf" sap:VirtualizedContainerService.HintSize="538,592" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[listMatch]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>

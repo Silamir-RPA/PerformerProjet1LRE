@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Activity mc:Ignorable="sap sap2010" x:Class="Séquence" this:Séquence.in_pathFolder="C:\Users\Walid ABRA\Documents\UiPath\LRE Automation Performer\Data\Input\test" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Séquence" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_pathFolder" Type="InArgument(x:String)" />
   </x:Members>
@@ -108,9 +107,10 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Assembler Pages PDF" sap:VirtualizedContainerService.HintSize="2789,1733" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Assembler Pages PDF" sap:VirtualizedContainerService.HintSize="2806,1743" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="si:DirectoryInfo" Name="fileinfo" />
       <Variable x:TypeArguments="si:FileInfo[]" Name="files" />
@@ -122,9 +122,9 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Start Message" sap:VirtualizedContainerService.HintSize="506,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;AssemblerFichiers - Assemblage des pages pdf&quot;]" />
-    <ui:GetFolderInfoX DisplayName="Récuperer les infos du dossier" FolderPath="[in_pathFolder]" sap:VirtualizedContainerService.HintSize="506,167" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_3" Output="[fileinfo]" ThrowIfNotExists="False" />
-    <Assign DisplayName="mettre les fichiers pdf trouvé sur le dossier" sap:VirtualizedContainerService.HintSize="506,115" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <ui:LogMessage DisplayName="Log Start Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;AssemblerFichiers - Assemblage des pages PDF - Dossier:&quot;+in_pathFolder]" />
+    <ui:GetFolderInfoX DisplayName="Récuperer les infos du dossier" FolderPath="[in_pathFolder]" sap:VirtualizedContainerService.HintSize="538,165" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_3" Output="[fileinfo]" ThrowIfNotExists="False" />
+    <Assign DisplayName="mettre les fichiers pdf trouvé sur le dossier" sap:VirtualizedContainerService.HintSize="538,114" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="si:FileInfo[]">[files]</OutArgument>
       </Assign.To>
@@ -132,7 +132,7 @@
         <InArgument x:TypeArguments="si:FileInfo[]">[fileinfo.GetFiles("*.pdf").ToArray]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[index]" DisplayName="pour chaque fichier trouvé" sap:VirtualizedContainerService.HintSize="506,1253" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[files]">
+    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[index]" DisplayName="pour chaque fichier trouvé" sap:VirtualizedContainerService.HintSize="538,1268" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[files]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="si:FileInfo">
           <ActivityAction.Argument>

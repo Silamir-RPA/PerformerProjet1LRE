@@ -1,0 +1,578 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="TraitementdesBE" this:TraitementdesBE.in_fusion="False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="fileNamePdf" Type="InArgument(x:String)" />
+    <x:Property Name="idDocument" Type="InArgument(x:Int32)" />
+    <x:Property Name="idLot" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="isFolder" Type="InArgument(x:String)" />
+    <x:Property Name="numeroSocietaire" Type="InArgument(x:String)" />
+    <x:Property Name="exception" Type="InArgument(s:Exception)" />
+    <x:Property Name="in_pathFilePdf" Type="InArgument(x:String)" />
+    <x:Property Name="in_fusion" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.PDF.Activities.PDF</x:String>
+      <x:String>UiPath.PDF.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Mail.Outlook</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="2806,4105" sap2010:WorkflowViewState.IdRef="Sequence_125">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="folderExistBE" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="658,4082" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <Sequence DisplayName="Traitement des BE" sap:VirtualizedContainerService.HintSize="620,3831" sap2010:WorkflowViewState.IdRef="Sequence_108">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Ajouter dans le rapport" sap:VirtualizedContainerService.HintSize="586,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_93" UnSafe="False" WorkflowFileName="Process\Rapports\addToReport.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_Config("folderPathRoot").ToString+"\"+in_TransactionItem.SpecificContent("Path").ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_fileName">[fileNamePdf]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_idDocument">[idDocument.ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_idLot">[idLot.ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_state">Fail</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_reason">[exception.Message]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_pathReport">[in_Config("in_pathReport").ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_sousDossier">[isFolder]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <If Condition="[exception.Message.contains(&quot;BE003&quot;)]" DisplayName="Conditions BE" sap:VirtualizedContainerService.HintSize="586,1885" sap2010:WorkflowViewState.IdRef="If_27">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="Sequence_110">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="AppendErreur -B003" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_96" UnSafe="False" WorkflowFileName="Process\Rapports\AppendErreur.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_exceptionMessage">[exception.Message.Substring(7).Trim]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_date">[Now.ToString("dd/MM/yyyy")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_heure">[Now.ToString("HH:mm")]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_code">[exception.Message.Trim.Substring(0,7).Replace("-","").Trim]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_pathExcel">[in_Config("rapportErreur").toString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_sheetName">[in_Config("Feuille Rapport Erreur").toString]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="552,1487" sap2010:WorkflowViewState.IdRef="Sequence_118">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:MoveFile DestinationResource="{x:Null}" PathResource="{x:Null}" ContinueOnError="True" Destination="[in_Config(&quot;folderPathManuel&quot;).ToString]" DisplayName="Deplacer dans rejet" sap:VirtualizedContainerService.HintSize="518,191" sap2010:WorkflowViewState.IdRef="MoveFile_16" Overwrite="True" Path="[in_pathFilePdf]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:MoveFile>
+                <If Condition="[exception.Message.ToLower.Contains(&quot;|&quot;) and exception.Message.StartsWith(&quot;BE012&quot;)]" DisplayName="Si Hors Perimetre " sap:VirtualizedContainerService.HintSize="518,1236" sap2010:WorkflowViewState.IdRef="If_30">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,405" sap2010:WorkflowViewState.IdRef="Sequence_109">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Int32" Name="horsPerim" />
+                        <Variable x:TypeArguments="x:Boolean" Name="newVar" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Incrementer Hors Perim intercalaire" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_97" UnSafe="False" WorkflowFileName="Process\utilities\IncrementerValue.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_name">Hors Perimetre</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeWorkflowFile>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="AppendRejet - Invoke Workflow File (Process\Rapports\AppendRejet.xaml)" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_98" UnSafe="False" WorkflowFileName="Process\Rapports\AppendRejet.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_number">[exception.Message.Split("|")(0).Split("-")(1).Trim.substring(0,13)]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_exceptionMessage">[exception.Message.Split("|")(1).Trim]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_variable">Hors Perimetre</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_pathReport">[in_Config("rapportRejet").ToString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_Config("folderPathManuel").ToString+"\"+in_pathFilePdf.Split("\").Last]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_nameSheet">[in_Config("Feuille Rapport Rejet").toString]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_raison">[exception.Message.Split("|")(0).Split("-")(1).Trim.substring(13,2)]</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:InvokeWorkflowFile>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484,670" sap2010:WorkflowViewState.IdRef="Sequence_117">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:IfElseIfV2 Condition="[exception.Message.StartsWith(&quot;BE012&quot;)]" DisplayName="si le message d'erreur commence par code d'erreur - .." sap:VirtualizedContainerService.HintSize="450,610" sap2010:WorkflowViewState.IdRef="IfElseIfV2_4">
+                        <ui:IfElseIfV2.Else>
+                          <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_116">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Append Rejet inconnue" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_104" UnSafe="False" WorkflowFileName="Process\Rapports\AppendRejet.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_number">[numeroSocietaire]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_exceptionMessage">[exception.Message]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_variable" />
+                                <InArgument x:TypeArguments="x:String" x:Key="in_pathReport">[in_Config("rapportRejet").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_Config("folderPathManuel").ToString+"\"+in_pathFilePdf.Split("\").Last]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_nameSheet">[in_Config("Feuille Rapport Rejet").toString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_raison" />
+                              </ui:InvokeWorkflowFile.Arguments>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:InvokeWorkflowFile>
+                          </Sequence>
+                        </ui:IfElseIfV2.Else>
+                        <ui:IfElseIfV2.ElseIfs>
+                          <sc:BindingList x:TypeArguments="ui:IfElseIfBlock" AllowEdit="True" AllowNew="True" AllowRemove="True" RaiseListChangedEvents="True">
+                            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[exception.Message.StartsWith(&quot;BE014&quot;)]" DisplayName="If else if block" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_6">
+                              <ui:IfElseIfBlock.Then>
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_114">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If Condition="[exception.Message.Substring(exception.Message.IndexOf(&quot;]&quot;)+1).Contains(&quot;-&quot;)]" DisplayName="contains &quot;-&quot;" sap:VirtualizedContainerService.HintSize="450,618" sap2010:WorkflowViewState.IdRef="If_29">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="Sequence_112">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Append Rejet BE014" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_101" UnSafe="False" WorkflowFileName="Process\Rapports\AppendRejet.xaml">
+                                          <ui:InvokeWorkflowFile.Arguments>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_number">[exception.Message.Substring(exception.Message.IndexOf("[")+1,(exception.Message.IndexOf("]")-exception.Message.IndexOf("[")-1)).split("|")(0)]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_exceptionMessage">[exception.Message.Substring(exception.Message.IndexOf("]")+1).Split("-")(1).Trim]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_variable" />
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_pathReport">[in_Config("rapportRejet").ToString]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_Config("folderPathManuel").ToString+"\"+in_pathFilePdf.Split("\").Last]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_nameSheet">[in_Config("Feuille Rapport Rejet").toString]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_raison">[exception.Message.Substring(exception.Message.IndexOf("[")+1,(exception.Message.IndexOf("]")-exception.Message.IndexOf("[")-1)).split("|")(1)]</InArgument>
+                                          </ui:InvokeWorkflowFile.Arguments>
+                                        </ui:InvokeWorkflowFile>
+                                      </Sequence>
+                                    </If.Then>
+                                    <If.Else>
+                                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="Sequence_113">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Append Rejet BE014" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_102" UnSafe="False" WorkflowFileName="Process\Rapports\AppendRejet.xaml">
+                                          <ui:InvokeWorkflowFile.Arguments>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_number">[exception.Message.Substring(exception.Message.IndexOf("[")+1,(exception.Message.IndexOf("]")-exception.Message.IndexOf("[")-1)).split("|")(0)]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_exceptionMessage">[exception.Message.Substring(exception.Message.IndexOf("]")+1).Trim]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_variable" />
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_pathReport">[in_Config("rapportRejet").ToString]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_Config("folderPathManuel").ToString+"\"+in_pathFilePdf.Split("\").Last]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_nameSheet">[in_Config("Feuille Rapport Rejet").toString]</InArgument>
+                                            <InArgument x:TypeArguments="x:String" x:Key="in_raison">[exception.Message.Substring(exception.Message.IndexOf("[")+1,(exception.Message.IndexOf("]")-exception.Message.IndexOf("[")-1)).split("|")(1)]</InArgument>
+                                          </ui:InvokeWorkflowFile.Arguments>
+                                        </ui:InvokeWorkflowFile>
+                                      </Sequence>
+                                    </If.Else>
+                                  </If>
+                                </Sequence>
+                              </ui:IfElseIfBlock.Then>
+                            </ui:IfElseIfBlock>
+                            <ui:IfElseIfBlock BlockType="ElseIf" Condition="[exception.Message.StartsWith(&quot;BE&quot;)]" DisplayName="If else if block" sap2010:WorkflowViewState.IdRef="IfElseIfBlock_7">
+                              <ui:IfElseIfBlock.Then>
+                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,228" sap2010:WorkflowViewState.IdRef="Sequence_115">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Append Rejet BE * Dynamique" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_103" UnSafe="False" WorkflowFileName="Process\Rapports\AppendRejet.xaml">
+                                    <ui:InvokeWorkflowFile.Arguments>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_number">[numeroSocietaire]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_exceptionMessage">[exception.Message.Substring(exception.Message.IndexOf("-")+1)]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_variable" />
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_pathReport">[in_Config("rapportRejet").ToString]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_Config("folderPathManuel").ToString+"\"+in_pathFilePdf.Split("\").Last]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_nameSheet">[in_Config("Feuille Rapport Rejet").toString]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_raison" />
+                                    </ui:InvokeWorkflowFile.Arguments>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:InvokeWorkflowFile>
+                                </Sequence>
+                              </ui:IfElseIfBlock.Then>
+                            </ui:IfElseIfBlock>
+                          </sc:BindingList>
+                        </ui:IfElseIfV2.ElseIfs>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:IfElseIfV2.Then>
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_111">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Incrementer Hors Perim" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_99" UnSafe="False" WorkflowFileName="Process\utilities\IncrementerValue.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_name">Hors Perimetre</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Append Rejet BE012" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_100" UnSafe="False" WorkflowFileName="Process\Rapports\AppendRejet.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_number">[numeroSocietaire]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_exceptionMessage">[exception.Message.Substring(exception.Message.IndexOf("]")+1)]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_variable" />
+                                <InArgument x:TypeArguments="x:String" x:Key="in_pathReport">[in_Config("rapportRejet").ToString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_Config("folderPathManuel").ToString+"\"+in_pathFilePdf.Split("\").Last]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_nameSheet">[in_Config("Feuille Rapport Rejet").toString]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_raison">[exception.Message.Substring(exception.Message.IndexOf("[")+1,(exception.Message.IndexOf("]")-exception.Message.IndexOf("[")-1))]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
+                          </Sequence>
+                        </ui:IfElseIfV2.Then>
+                      </ui:IfElseIfV2>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[in_TransactionItem.SpecificContent(&quot;isFolder&quot;).Equals(False) and in_fusion=False]" DisplayName="Suppression du fichier ou dossier" sap:VirtualizedContainerService.HintSize="586,1604" sap2010:WorkflowViewState.IdRef="If_28">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,717" sap2010:WorkflowViewState.IdRef="Sequence_121">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="fileExistBE" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:FileExistsX DisplayName="Le fichier existe?" Exists="[fileExistBE]" sap:VirtualizedContainerService.HintSize="450,165" sap2010:WorkflowViewState.IdRef="FileExistsX_3" Path="[in_Config(&quot;folderPathRoot&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Path&quot;).ToString]" />
+                <If Condition="[fileExistBE]" DisplayName="si le fichier existe supprime fichier" sap:VirtualizedContainerService.HintSize="450,492" sap2010:WorkflowViewState.IdRef="If_31">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,242" sap2010:WorkflowViewState.IdRef="Sequence_119">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_Config(&quot;folderPathTraites&quot;).ToString]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="382,182" sap2010:WorkflowViewState.IdRef="MoveFile_18" Overwrite="True" Path="[in_Config(&quot;folderPathRoot&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Path&quot;).ToString]" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_120">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="484,717" sap2010:WorkflowViewState.IdRef="Sequence_124">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:FolderExistsX DisplayName="Sous dossier existe?" Exists="[folderExistBE]" sap:VirtualizedContainerService.HintSize="450,165" sap2010:WorkflowViewState.IdRef="FolderExistsX_3" Path="[in_Config(&quot;folderPathRoot&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Path&quot;).ToString]" />
+                <If Condition="[folderExistBE]" DisplayName="si le sous dossier existe supprime dossier" sap:VirtualizedContainerService.HintSize="450,492" sap2010:WorkflowViewState.IdRef="If_32">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <If.Then>
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,242" sap2010:WorkflowViewState.IdRef="Sequence_122">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:MoveFolderX DisplayName="Move Folder" From="[in_Config(&quot;folderPathRoot&quot;).ToString+&quot;\&quot;+in_TransactionItem.SpecificContent(&quot;Path&quot;).ToString]" sap:VirtualizedContainerService.HintSize="382,182" sap2010:WorkflowViewState.IdRef="MoveFolderX_1" Overwrite="True" To="[in_Config(&quot;folderPathTraites&quot;).ToString]" />
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_123">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Incrementer Nombre PDF Rejet" sap:VirtualizedContainerService.HintSize="586,57" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_94" UnSafe="False" WorkflowFileName="Process\utilities\IncrementerValue.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_name">REJET</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Incrementer total" sap:VirtualizedContainerService.HintSize="586,48" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_95" UnSafe="False" WorkflowFileName="Process\utilities\IncrementerValue.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_name">total</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="624,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="416,364" sap2010:WorkflowViewState.IdRef="Sequence_127">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:MoveFile DestinationResource="{x:Null}" PathResource="{x:Null}" ContinueOnError="True" Destination="[in_Config(&quot;folderPathManuel&quot;).ToString]" DisplayName="Deplacer dans rejet" sap:VirtualizedContainerService.HintSize="382,191" sap2010:WorkflowViewState.IdRef="MoveFile_17" Overwrite="True" Path="[in_pathFilePdf]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:MoveFile>
+              <Throw Exception="[New BusinessRuleException(&quot;Une erreur rencontrée lors de l'ajout du rejet dans le rapport. Détails: &quot;+exception.Message)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

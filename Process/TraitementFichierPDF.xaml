@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Activity mc:Ignorable="sap sap2010" x:Class="TraitementFichierPDF" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="TraitementFichierPDF" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
@@ -11,7 +10,11 @@
     <x:Property Name="in_pathFilePdf" Type="InArgument(x:String)" />
     <x:Property Name="in_fileNamePdf" Type="InArgument(x:String)" />
     <x:Property Name="in_countPage" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_excludeWords" Type="InArgument(sd:DataTable)" />
   </x:Members>
+  <this:TraitementFichierPDF.in_excludeWords>
+    <InArgument x:TypeArguments="sd:DataTable" />
+  </this:TraitementFichierPDF.in_excludeWords>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -45,6 +48,7 @@
       <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Linq.Expressions</x:String>
       <x:String>System.Numerics</x:String>
+      <x:String>System.Xml.Serialization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -120,15 +124,19 @@
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1062.6666666666667,545.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_46">
+  <Sequence sap:VirtualizedContainerService.HintSize="2823,724.04" sap2010:WorkflowViewState.IdRef="Sequence_46">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extraire et generer le fichier xml" sap:VirtualizedContainerService.HintSize="416,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_29" UnSafe="False" WorkflowFileName="Process\Extraction\ExtraireGenerer.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extraire et generer le fichier xml" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_29" UnSafe="False" WorkflowFileName="Process\Extraction\ExtraireGenerer.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
         <InOutArgument x:TypeArguments="x:Int32" x:Key="io_idDocument">[io_idDocument]</InOutArgument>
@@ -138,11 +146,13 @@
         <InArgument x:TypeArguments="x:String" x:Key="in_pathFilePdf">[in_pathFilePdf]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_fileNamePdf">[in_fileNamePdf]</InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_countPage">[in_countPage]</InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_excludeWords">[in_excludeWords]</InArgument>
+        <InArgument x:TypeArguments="x:Boolean" x:Key="in_isFolder">[in_TransactionItem.SpecificContent("isFolder").ToString.ToLower="true"]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Ajouter dans le report un succes " sap:VirtualizedContainerService.HintSize="416,177.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Process\Rapports\addToReport.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Ajouter dans le report un succes " sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_30" UnSafe="False" WorkflowFileName="Process\Rapports\addToReport.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_TransactionItem.SpecificContent("Path").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_pathFile">[in_Config("folderPathRoot").ToString+"\"+in_TransactionItem.SpecificContent("Path").ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_fileName">[in_fileNamePdf]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_idDocument">[io_idDocument.ToString]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_idLot">[io_idLot.ToString]</InArgument>

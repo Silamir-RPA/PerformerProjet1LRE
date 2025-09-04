@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="resetVariables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="resetVariables" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_rapport" Type="InArgument(x:String)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -110,7 +110,7 @@
       <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="resetVariables" sap:VirtualizedContainerService.HintSize="2789,2006" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="resetVariables" sap:VirtualizedContainerService.HintSize="2806,1915" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="exceptionMessage" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_data" />
@@ -121,17 +121,17 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message rapport" sap:VirtualizedContainerService.HintSize="522,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;resetRapport- Initialisation du rapport&quot;]" />
-    <ui:BuildDataTable DataTable="[dt_data]" DisplayName="Construire datatable rapport" sap:VirtualizedContainerService.HintSize="522,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Chemin_x0020_du_x0020_fichier_x0020_d_x0027_entré&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Nom_x0020_du_x0020_fichier_x0020_Pdf_x0020_traité&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Numéro_x0020_du_x0020_Lot&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Numéro_x0020_du_x0020_document&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Etat&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Message_x0020_d_x0027_erreur&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Sous_x0020_Dossier&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" DisplayName="Retenter Excel 3 fois max pour vider le rapport" sap:VirtualizedContainerService.HintSize="522,1322" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+    <ui:LogMessage DisplayName="Log Message rapport" sap:VirtualizedContainerService.HintSize="576,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;resetRapport- Initialisation du rapport&quot;]" />
+    <ui:BuildDataTable DataTable="[dt_data]" DisplayName="Construire datatable rapport" sap:VirtualizedContainerService.HintSize="576,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Chemin_x0020_du_x0020_fichier_x0020_d_x0027_entré&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Nom_x0020_du_x0020_fichier_x0020_Pdf_x0020_traité&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Numéro_x0020_du_x0020_Lot&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Numéro_x0020_du_x0020_document&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Etat&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Message_x0020_d_x0027_erreur&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Sous_x0020_Dossier&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;255&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:InterruptibleDoWhile CurrentIndex="{x:Null}" Condition="[retry]" DisplayName="Retenter Excel 3 fois max pour vider le rapport" sap:VirtualizedContainerService.HintSize="576,1204" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1" MaxIterations="3">
       <ui:InterruptibleDoWhile.Body>
-        <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="520,1191" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Corps" sap:VirtualizedContainerService.HintSize="542,1058" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign DisplayName="retry false" sap:VirtualizedContainerService.HintSize="486,115" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign DisplayName="retry false" sap:VirtualizedContainerService.HintSize="508,114" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Boolean">[retry]</OutArgument>
             </Assign.To>
@@ -139,7 +139,7 @@
               <InArgument x:TypeArguments="x:Boolean">False</InArgument>
             </Assign.Value>
           </Assign>
-          <TryCatch DisplayName="Try CatchExcel" sap:VirtualizedContainerService.HintSize="486,1016" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try CatchExcel" sap:VirtualizedContainerService.HintSize="508,884" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -147,13 +147,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" DisplayName="Excel Process Scope Rapport" ExistingProcessAction="ForceKill" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1" ShowExcelWindow="False">
+              <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" DisplayName="Excel Process Scope Rapport" ExistingProcessAction="ForceKill" sap:VirtualizedContainerService.HintSize="450,112" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1" ShowExcelWindow="False">
                 <ueab:ExcelProcessScopeX.Body>
                   <ActivityAction x:TypeArguments="ui:IExcelProcess">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="ui:IExcelProcess" Name="ExcelProcessScopeTag" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <Sequence DisplayName="Faire" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_2">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -191,18 +191,24 @@
               </ueab:ExcelProcessScopeX>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="ui:ExcelException" sap2010:WorkflowViewState.IdRef="Catch`1_2">
-                <ActivityAction x:TypeArguments="ui:ExcelException">
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="474,699" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
                   <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="ui:ExcelException" Name="exception" />
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484,633" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,629" sap2010:WorkflowViewState.IdRef="Sequence_9">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Assign DisplayName="retry true" sap:VirtualizedContainerService.HintSize="450,115" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign DisplayName="retry true" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_4">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Boolean">[retry]</OutArgument>
                       </Assign.To>
@@ -210,7 +216,7 @@
                         <InArgument x:TypeArguments="x:Boolean">[true]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <Assign DisplayName="exception Message" sap:VirtualizedContainerService.HintSize="450,115" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign DisplayName="exception Message" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_5">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[exceptionMessage]</OutArgument>
                       </Assign.To>
@@ -218,12 +224,12 @@
                         <InArgument x:TypeArguments="x:String">[exception.Message]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="KillAllProcesses - Appeler le fichier de flux de travail (Framework\KillAllProcesses.xaml)" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="KillAllProcesses - Appeler le fichier de flux de travail (Framework\KillAllProcesses.xaml)" sap:VirtualizedContainerService.HintSize="434,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <scg:Dictionary x:TypeArguments="x:String, Argument" />
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
-                    <ui:LogMessage DisplayName="Log Message exception" sap:VirtualizedContainerService.HintSize="450,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[exception.Message+&quot; Nouvelle tentative&quot;]" />
+                    <ui:LogMessage DisplayName="Log Message exception" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message+&quot; Nouvelle tentative&quot;]" />
                   </Sequence>
                 </ActivityAction>
               </Catch>
@@ -240,23 +246,20 @@
           </TryCatch>
         </Sequence>
       </ui:InterruptibleDoWhile.Body>
-      <ui:InterruptibleDoWhile.Condition>
-        <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="retry" />
-      </ui:InterruptibleDoWhile.Condition>
     </ui:InterruptibleDoWhile>
-    <If Condition="[retry]" DisplayName="Si l'erreur persiste" sap:VirtualizedContainerService.HintSize="522,394" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[retry]" DisplayName="Si l'erreur persiste" sap:VirtualizedContainerService.HintSize="576,423" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,173" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Throw DisplayName="Throw Excel" Exception="[New ExcelException(exceptionMessage)]" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="Throw_3" />
+          <Throw DisplayName="Throw Excel" Exception="[New ExcelException(exceptionMessage)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_3" />
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_8">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>

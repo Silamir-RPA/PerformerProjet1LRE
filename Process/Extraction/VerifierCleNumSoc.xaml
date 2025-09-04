@@ -83,7 +83,7 @@
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="VerifierNumSoc" sap:VirtualizedContainerService.HintSize="2806,930" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="VerifierNumSoc" sap:VirtualizedContainerService.HintSize="2806,1149" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="numero" />
       <Variable x:TypeArguments="x:String" Name="cle" />
@@ -117,12 +117,36 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="     string V2 = &quot;100000001110001111000011001100&quot;;&#xA;      string V8 = &quot;412345670112460246133404151526&quot;;&#xA;     string VC = &quot;ABCDEFGHJKLMNPQRSTUVWXYZ&quot;;&#xA; &#x9;&#x9;&#x9;int rg = 1;&#xA;            int i1;&#xA;            int s2 = 0;&#xA;            int s8 = 0;&#xA;            foreach (char c in numero)&#xA;            {&#xA;                int l = (int)(c - '0');&#xA;&#xA;                i1 = (int)(c - '0') + 1 + rg * 10;&#xA;                if (i1 &lt; 1 || i1 &gt; 30)&#xA;                    i1 = 1;&#xA;                s2 += (int)(V2[i1 - 1] - '0');&#xA;                s8 += (int)(V8[i1 - 1] - '0');&#xA;                rg = (rg + 2) % 3;&#xA;            }&#xA;            s2 = s2 % 3;&#xA;            s8 = (s8 % 8) + 1;&#xA;            sortie= VC[s2 * 8 + s8 - 1].ToString();&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="479,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="     string V2 = &quot;100000001110001111000011001100&quot;;&#xA;      string V8 = &quot;412345670112460246133404151526&quot;;&#xA;     string VC = &quot;ABCDEFGHJKLMNPQRSTUVWXYZ&quot;;&#xA; &#x9;&#x9;&#x9;int rg = 1;&#xA;            int i1;&#xA;            int s2 = 0;&#xA;            int s8 = 0;&#xA;            foreach (char c in numero)&#xA;            {&#xA;                int l = (int)(c - '0');&#xA;&#xA;                i1 = (int)(c - '0') + 1 + rg * 10;&#xA;                if (i1 &lt; 1 || i1 &gt; 30)&#xA;                    i1 = 1;&#xA;                s2 += (int)(V2[i1 - 1] - '0');&#xA;                s8 += (int)(V8[i1 - 1] - '0');&#xA;                rg = (rg + 2) % 3;&#xA;            }&#xA;            s2 = s2 % 3;&#xA;            s8 = (s8 % 8) + 1;&#xA;            sortie= VC[s2 * 8 + s8 - 1].ToString();&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="479,197" sap2010:WorkflowViewState.IdRef="InvokeCode_2" Language="CSharp">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="numero">[in_numero]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="numero">[numero]</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="sortie">[sortie]</OutArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="479,219" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Activités ignorées" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="     string V2 = &quot;100000001110001111000011001100&quot;;&#xA;      string V8 = &quot;412345670112460246133404151526&quot;;&#xA;     string VC = &quot;ABCDEFGHJKLMNPQRSTUVWXYZ&quot;;&#xA; &#x9;&#x9;&#x9;int rg = 1;&#xA;            int i1;&#xA;            int s2 = 0;&#xA;            int s8 = 0;&#xA;            foreach (char c in numero)&#xA;            {&#xA;                int l = (int)(c - '0');&#xA;&#xA;                i1 = (int)(c - '0') + 1 + rg * 10;&#xA;                if (i1 &lt; 1 || i1 &gt; 30)&#xA;                    i1 = 1;&#xA;                s2 += (int)(V2[i1 - 1] - '0');&#xA;                s8 += (int)(V8[i1 - 1] - '0');&#xA;                rg = (rg + 2) % 3;&#xA;            }&#xA;            s2 = s2 % 3;&#xA;            s8 = (s8 % 8) + 1;&#xA;            sortie= VC[s2 * 8 + s8 - 1].ToString();&#xA;" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="InvokeCode_1" Language="CSharp">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="numero">[in_numero]</InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="sortie">[sortie]</OutArgument>
+            </ui:InvokeCode.Arguments>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokeCode>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
     <If Condition="[String.IsNullOrEmpty(sortie)=false]" DisplayName="Si le code nous donne une clé" sap:VirtualizedContainerService.HintSize="479,358" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
         <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_2">

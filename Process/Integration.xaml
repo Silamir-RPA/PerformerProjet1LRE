@@ -119,7 +119,7 @@
       <AssemblyReference>System.Memory.Data</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="2806,2666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="1926,2839" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="si:DirectoryInfo" Name="folderInfo" />
     </Sequence.Variables>
@@ -130,7 +130,7 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Start Message" sap:VirtualizedContainerService.HintSize="518,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Phase d'Integration&quot;]" />
     <ui:GetFolderInfoX DisplayName="recuperer les infos du dossier " FolderPath="[in_Config(&quot;folderPathTmp&quot;).ToString]" sap:VirtualizedContainerService.HintSize="518,165" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_2" Output="[folderInfo]" ThrowIfNotExists="False" />
-    <If Condition="[folderInfo.GetFiles.Count&gt;=1000 or (folderInfo.GetFiles.Count&gt;0 and in_last)]" DisplayName="si c'est le dernier iteam queue ou le dossier contient 1000 fichier" sap:VirtualizedContainerService.HintSize="518,2305" sap2010:WorkflowViewState.IdRef="If_18">
+    <If Condition="[folderInfo.GetFiles.Count&gt;=1000 or (folderInfo.GetFiles.Count&gt;0 and in_last)]" DisplayName="si c'est le dernier iteam queue ou le dossier contient 1000 fichier" sap:VirtualizedContainerService.HintSize="518,2478" sap2010:WorkflowViewState.IdRef="If_18">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -138,7 +138,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,2053" sap2010:WorkflowViewState.IdRef="Sequence_46">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,2226" sap2010:WorkflowViewState.IdRef="Sequence_46">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="files" />
             <Variable x:TypeArguments="si:FileInfo" Name="fileInfo" />
@@ -181,10 +181,11 @@
               <InArgument x:TypeArguments="x:String" x:Key="in_domaine">[in_Config("Domaine").ToString]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Création du ZIP: &quot;+in_Config(&quot;NameZip&quot;).ToString+&quot;_&quot;+dateGlobal.ToString(&quot;yyyyMMddHHmmss&quot;)+&quot;.zip&quot;]" />
           <uascw:CompressFiles CompressedResource="{x:Null}" Password="{x:Null}" ResourcesToArchive="{x:Null}" SecurePassword="{x:Null}" AllowDuplicateContentNames="False" CodePage="Default" CompressedFileInfo="[fileInfo]" CompressedFileName="[in_Config(&quot;NameZip&quot;).ToString+&quot;_&quot;+dateGlobal.ToString(&quot;yyyyMMddHHmmss&quot;)+&quot;.zip&quot;]" CompressionLevel="Normal" DisplayName="Créer un fichier ZIP" EncryptionAlgorithm="Classic" sap:VirtualizedContainerService.HintSize="450,247" sap2010:WorkflowViewState.IdRef="CompressFiles_1" OverrideExistingFile="True">
             <uascw:CompressFiles.ContentToArchive>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="1">
-                <InArgument x:TypeArguments="x:String">[files+"|"+in_Config("folderPathTmp").ToString+"\"+in_Config("Domaine").ToString+"_"+dateGlobal.ToString("yyyyMMdd_HHmmss")+"_"+in_idLot.toString("D9")+".xml"]</InArgument>
+                <InArgument x:TypeArguments="x:String">[files+"|"+in_Config("folderPathTmp").ToString+"\"+in_Config("NameZip").ToString+"_"+dateGlobal.ToString("yyyyMMddHHmmss")+".xml"]</InArgument>
               </scg:List>
             </uascw:CompressFiles.ContentToArchive>
             <sap:WorkflowViewStateService.ViewState>

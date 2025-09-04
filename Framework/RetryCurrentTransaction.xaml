@@ -5,7 +5,6 @@
     <x:Property sap2010:Annotation.AnnotationText="Sequential counter of transaction items." Name="io_TransactionNumber" Type="InOutArgument(x:Int32)" />
     <x:Property sap2010:Annotation.AnnotationText="Used during transitions between states to represent exceptions other than business exceptions." Name="in_SystemException" Type="InArgument(s:Exception)" />
     <x:Property sap2010:Annotation.AnnotationText="Used to indicate whether the retry procedure is managed by an Orchestrator queue." Name="in_QueueRetry" Type="InArgument(x:Boolean)" />
-    <x:Property Name="in_screenshotPath" Type="InArgument(x:String)" />
   </x:Members>
   <sap:VirtualizedContainerService.HintSize>884.666666666667,809.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
@@ -64,7 +63,7 @@
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
     </sco1:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart sap2010:Annotation.AnnotationText="Manage the retrying mechanism for the framework and it is invoked in SetTransactionStatus.xaml when a system exception occurs. &#xA;The retrying method is based on the configurations defined in Config.xlsx." DisplayName="Retry Current Transaction" sap:VirtualizedContainerService.HintSize="2652,724.04" sap2010:WorkflowViewState.IdRef="Flowchart_7">
+  <Flowchart sap2010:Annotation.AnnotationText="Manage the retrying mechanism for the framework and it is invoked in SetTransactionStatus.xaml when a system exception occurs. &#xA;The retrying method is based on the configurations defined in Config.xlsx." DisplayName="Retry Current Transaction" sap:VirtualizedContainerService.HintSize="2823,724.04" sap2010:WorkflowViewState.IdRef="Flowchart_7">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -194,7 +193,7 @@
                                       <InArgument x:TypeArguments="x:String" x:Key="in_to">[in_Config("Destinataire").ToString]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Object">[in_Config("object"+code).ToString+" _ "+in_Config("ProcessName").ToString]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Body">[in_Config("body"+code).ToString]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_pj">[in_screenshotPath]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_pj" />
                                       <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
                                     </ui:InvokeWorkflowFile.Arguments>
                                     <sap:WorkflowViewStateService.ViewState>
@@ -218,7 +217,7 @@
                                       <InArgument x:TypeArguments="x:String" x:Key="in_to">[in_Config("Destinataire").ToString]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Object">[in_Config("objectBE099").ToString+" _ "+in_Config("ProcessName").ToString]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Body">[in_Config("bodyBE099").ToString]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_pj">[in_screenshotPath]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="in_pj" />
                                       <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
                                     </ui:InvokeWorkflowFile.Arguments>
                                     <sap:WorkflowViewStateService.ViewState>

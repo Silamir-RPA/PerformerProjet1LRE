@@ -75,13 +75,9 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="test_Cle_Soc" sap:VirtualizedContainerService.HintSize="1926,616" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="test_Cle_Soc" sap:VirtualizedContainerService.HintSize="2806,616" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="path">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:String">C:\Users\rpa.lre.res.dev\Documents\dossier inexistant - clef soc KO - 2.pdf</Literal>
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Name="path" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="Config" />
       <Variable x:TypeArguments="x:String" Name="numero" />
     </Sequence.Variables>

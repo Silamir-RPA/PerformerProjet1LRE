@@ -15,6 +15,7 @@
         "TransactionID&StateMachine_1",
         "dt_TransactionData&StateMachine_1",
         "ConsecutiveSystemExceptions&StateMachine_1",
+        "dt_excludeWords&StateMachine_1",
         "folderExist&State_1",
         "ShouldStop&Sequence_25",
         "fileNamePdf&State_3",
@@ -39,6 +40,10 @@
       "Path": "Process/Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "txtPDF&Sequence_97",
+        "nameFirstFile&Sequence_34",
+        "name&Sequence_34",
+        "path&Sequence_1",
         "fileExist&Sequence_1",
         "dateNow&Sequence_1",
         "perimetreArray&Sequence_1",
@@ -53,15 +58,12 @@
         "isMultiple&Sequence_33",
         "fileInfo&Sequence_41",
         "files&Sequence_41",
-        "horsPerim&Sequence_97",
-        "newVar&Sequence_97",
         "folderExist&Sequence_34",
         "exceptionMessage&Sequence_79",
-        "folderExistBE&Sequence_79",
-        "horsPerim&Sequence_84",
-        "newVar&Sequence_84"
+        "folderExistBE&Sequence_79"
       ],
       "ArgumentsSectionElementsOrder": [
+        "in_excludeWord",
         "in_TransactionItem",
         "in_Config"
       ],
@@ -71,15 +73,31 @@
     {
       "Path": "Process/EndProcessus.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "idlot&Sequence_83",
+        "tempFolderInfo&Sequence_42",
+        "folderExist&Sequence_1",
+        "rapportNewname&Sequence_1",
+        "code&Sequence_1",
+        "io_nbrRejet&Sequence_1",
+        "fileExist&Sequence_42",
+        "messageErreur&Sequence_42",
+        "dt_rapportErreur&Sequence_43",
+        "retry&Sequence_43"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_SystemException",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
       "Path": "Process/Rapports/GenererRapportMensuel.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "SOCKO&Sequence_7",
+        "dt_soc&Sequence_7",
         "dt_hp&Sequence_7",
         "dt_fail&Sequence_7",
         "dt_success&Sequence_7",
@@ -141,33 +159,65 @@
     {
       "Path": "Process/Extraction/DecouperFichier.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "index&Sequence_1",
+        "count&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_pathPdf"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
       "Path": "Process/Extraction/ExtraireNumeroSocietaire.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "input&Sequence_1",
+        "txtString&Sequence_1",
+        "listMatch&Sequence_1",
+        "index&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_isFolder",
+        "in_pathFile",
+        "out_numeroSocietaire",
+        "out_perimetre",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
       "Path": "Process/Extraction/VerifierExistenceNumero.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "txtString&Sequence_1",
+        "listMatch&Sequence_1",
+        "index&Sequence_1",
+        "numeroSocietaire&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_pathFile",
+        "out_numberExist"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
       "Path": "Process/Extraction/VerifierMultiNumSocietaires.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "numeroSocietaire&Sequence_1",
+        "index&Sequence_1",
+        "listMatch&Sequence_1",
+        "txtString&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_pathFile",
+        "out_multiple"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -188,9 +238,25 @@
     {
       "Path": "Process/Initialisation/FirstRun.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "result&Sequence_10",
+        "FolderOrchestrator&Sequence_10",
+        "queueName&Sequence_10",
+        "rapportExecution&Sequence_1",
+        "rapportErreur&Sequence_1",
+        "rapportRejet&Sequence_1",
+        "rapportMensuel&Sequence_1",
+        "folderExist&Sequence_1",
+        "dateVar&Sequence_1",
+        "exec&Sequence_1",
+        "fileExist&Sequence_21",
+        "fileErrorExist&Sequence_19"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_excludeWords",
+        "io_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -209,9 +275,21 @@
     {
       "Path": "Process/Rapports/addToReport.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "dt_reportAdd&Sequence_1",
+        "dt_Report&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_pathFile",
+        "in_fileName",
+        "in_idDocument",
+        "in_idLot",
+        "in_state",
+        "in_reason",
+        "in_pathReport",
+        "in_sousDossier"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -267,9 +345,22 @@
     {
       "Path": "Process/Rapports/GenererTemplates.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "dt_execution&Sequence_1",
+        "dt_erreur&Sequence_1",
+        "dt_rejet&Sequence_1",
+        "fileExist&Sequence_1",
+        "dt_mensuel&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_pathFolder",
+        "out_rapportExecution",
+        "out_rapportErreur",
+        "out_rapportRejet",
+        "out_rapportMensuel",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -283,25 +374,50 @@
     {
       "Path": "Process/Rapports/resetRapport.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "exceptionMessage&Sequence_1",
+        "dt_data&Sequence_1",
+        "retry&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_rapport",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
       "Path": "Process/Rapports/SupprimerRapport.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "dt_data&Sequence_1",
+        "fileExist&Sequence_1",
+        "retry&Sequence_1",
+        "exceptionMessage&Sequence_6"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_pathRapport",
+        "in_nomFeuille"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
       "Path": "Process/Integration.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [],
-      "ArgumentsSectionElementsOrder": null,
-      "ConstantsSectionElementsOrder": null,
+      "VariablesSectionElementsOrder": [
+        "folderInfo&Sequence_1",
+        "files&Sequence_46",
+        "fileInfo&Sequence_46",
+        "dateGlobal&Sequence_46"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_last",
+        "in_Config",
+        "in_idLot",
+        "in_idDocument"
+      ],
+      "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
     },
     {
@@ -309,6 +425,7 @@
       "SortBy": 0,
       "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
+        "in_excludeWords",
         "in_Config",
         "in_TransactionItem",
         "in_isFolder",
@@ -326,11 +443,10 @@
     {
       "Path": "Process/Extraction/ExtraireGenerer.xaml",
       "SortBy": 0,
-      "VariablesSectionElementsOrder": [
-        "txtPdf&Sequence_40",
-        "tempString&Sequence_40"
-      ],
+      "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [
+        "in_isFolder",
+        "in_excludeWords",
         "in_Config",
         "io_idDocument",
         "io_idLot",
@@ -402,9 +518,14 @@
       "AddedNamespaces": null
     },
     {
-      "Path": "Tests/Test.xaml",
+      "Path": "Tests/TestExtractionNumero.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "Config&Sequence_1",
+        "dt_perimetre&Sequence_2",
+        "sortie&Sequence_5",
+        "cle&Sequence_5",
+        "in_numero&Sequence_5",
         "TestDt&Sequence_1",
         "nmbre&Sequence_2",
         "numero&Sequence_2",
@@ -432,6 +553,204 @@
       "VariablesSectionElementsOrder": [
         "Config&Sequence_1"
       ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/TakeScreenshot.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "Screenshot&Sequence_1",
+        "ScreenshotFileInfo&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Folder",
+        "io_FilePath"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/SetTransactionStatus.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "QueueRetry&Sequence_17"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_BusinessException",
+        "in_TransactionField1",
+        "in_TransactionField2",
+        "in_TransactionID",
+        "in_SystemException",
+        "in_Config",
+        "in_TransactionItem",
+        "io_RetryNumber",
+        "io_TransactionNumber",
+        "io_ConsecutiveSystemExceptions"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/RetryCurrentTransaction.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "code&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config",
+        "io_RetryNumber",
+        "io_TransactionNumber",
+        "in_SystemException",
+        "in_QueueRetry"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/TraitementdesBE.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "folderExistBE&Sequence_125",
+        "fileExistBE&Sequence_121",
+        "horsPerim&Sequence_109",
+        "newVar&Sequence_109"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_fusion",
+        "in_pathFilePdf",
+        "exception",
+        "in_TransactionItem",
+        "fileNamePdf",
+        "idDocument",
+        "idLot",
+        "in_Config",
+        "isFolder",
+        "numeroSocietaire"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/utilities/resetVariables.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "reset&Sequence_1",
+        "sheetExist&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_fixe",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/utilities/IncrementerValue.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "value&Sequence_1",
+        "isNew&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_name"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/utilities/getIntValue.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "result&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_name",
+        "out_value",
+        "out_new"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/utilities/getValue.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "inpath&Sequence_1",
+        "variablesDt&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "out_result",
+        "in_name"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/utilities/FusionnerPDF.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "tmpName&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_pathFile1",
+        "in_pathFile2"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/Test1.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "TestDt&Sequence_1",
+        "nmbre&Sequence_2",
+        "numero&Sequence_2",
+        "perimsArray&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process/Extraction/VerifierExitenceMotCle.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "txtPdf&Sequence_64",
+        "currentText&Sequence_68",
+        "dt_ExcludeText&Sequence_57",
+        "tempString&Sequence_64"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_excludeWords",
+        "in_pathFilePdf",
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/TestVerificationSante.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "j&Sequence_2",
+        "dt_excludeWords&Sequence_1",
+        "TestDt&Sequence_1",
+        "Config&Sequence_1",
+        "nmbre&Sequence_2",
+        "numero&Sequence_2",
+        "perimsArray&Sequence_2",
+        "dt_perimetre&Sequence_2"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Tests/testt.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null
