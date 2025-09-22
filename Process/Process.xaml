@@ -3,6 +3,7 @@
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_excludeWord" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="io_Numb_ZIP" Type="InOutArgument(x:Int32)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -147,7 +148,7 @@
       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="2806,4877" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1926,4877" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="fileExist" />
       <Variable x:TypeArguments="s:DateTime" Name="dateNow" />
@@ -356,7 +357,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:InvokeWorkflowFile>
-                <ui:IfElseIfV2 Condition="[countPage=1 and isMultiple]" DisplayName="Different cas" sap:VirtualizedContainerService.HintSize="434,57" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
+                <ui:IfElseIfV2 Condition="[countPage=1 and isMultiple]" DisplayName="Different cas" sap:VirtualizedContainerService.HintSize="450,1326" sap2010:WorkflowViewState.IdRef="IfElseIfV2_1">
                   <ui:IfElseIfV2.Else>
                     <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_40">
                       <sap:WorkflowViewStateService.ViewState>
@@ -403,6 +404,7 @@
                                 <InArgument x:TypeArguments="x:String" x:Key="in_fileNamePdf">[fileNamePdf]</InArgument>
                                 <InArgument x:TypeArguments="x:Int32" x:Key="in_countPage">[countPage]</InArgument>
                                 <InArgument x:TypeArguments="sd:DataTable" x:Key="in_excludeWords">[in_excludeWord]</InArgument>
+                                <InOutArgument x:TypeArguments="x:Int32" x:Key="io_Nmbr_ZIP">[io_Numb_ZIP]</InOutArgument>
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Incrementer Nombre PDF OK seul numero" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_48" UnSafe="False" WorkflowFileName="Process\utilities\IncrementerValue.xaml">
@@ -425,7 +427,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                         <ui:IfElseIfBlock.Then>
-                          <Sequence DisplayName="Plusieurs Numéros et plusieurs pages" sap:VirtualizedContainerService.HintSize="416,25" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                          <Sequence DisplayName="Plusieurs Numéros et plusieurs pages" sap:VirtualizedContainerService.HintSize="468,914" sap2010:WorkflowViewState.IdRef="Sequence_41">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="si:DirectoryInfo" Name="fileInfo" />
                               <Variable x:TypeArguments="s:String[]" Name="files" />
@@ -482,7 +484,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </Assign>
-                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Pour chaque fichier PDF" sap:VirtualizedContainerService.HintSize="434,48" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[files]">
+                            <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Pour chaque fichier PDF" sap:VirtualizedContainerService.HintSize="619,2383" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[files]">
                               <ui:ForEach.Body>
                                 <ActivityAction x:TypeArguments="x:String">
                                   <ActivityAction.Argument>
@@ -608,6 +610,7 @@
                                               <InArgument x:TypeArguments="x:String" x:Key="in_fileNamePdf">[fileNamePdf]</InArgument>
                                               <InArgument x:TypeArguments="x:Int32" x:Key="in_countPage">[countPage]</InArgument>
                                               <InArgument x:TypeArguments="sd:DataTable" x:Key="in_excludeWords">[in_excludeWord]</InArgument>
+                                              <InOutArgument x:TypeArguments="x:Int32" x:Key="io_Nmbr_ZIP">[io_Numb_ZIP]</InOutArgument>
                                             </ui:InvokeWorkflowFile.Arguments>
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -922,6 +925,7 @@
                     <InArgument x:TypeArguments="x:String" x:Key="in_fileNamePdf">[fileNamePdf]</InArgument>
                     <InArgument x:TypeArguments="x:Int32" x:Key="in_countPage">[countPage]</InArgument>
                     <InArgument x:TypeArguments="sd:DataTable" x:Key="in_excludeWords">[in_excludeWord]</InArgument>
+                    <InOutArgument x:TypeArguments="x:Int32" x:Key="io_Nmbr_ZIP">[io_Numb_ZIP]</InOutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <ui:MoveFolderX DisplayName="deplacer sous dossier vers traités" From="[path]" sap:VirtualizedContainerService.HintSize="570,191" sap2010:WorkflowViewState.IdRef="MoveFolderX_1" Overwrite="True" To="[in_Config(&quot;folderPathTraites&quot;).ToString]" />

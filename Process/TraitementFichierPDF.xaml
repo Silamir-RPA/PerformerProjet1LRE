@@ -11,6 +11,7 @@
     <x:Property Name="in_fileNamePdf" Type="InArgument(x:String)" />
     <x:Property Name="in_countPage" Type="InArgument(x:Int32)" />
     <x:Property Name="in_excludeWords" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="io_Nmbr_ZIP" Type="InOutArgument(x:Int32)" />
   </x:Members>
   <this:TraitementFichierPDF.in_excludeWords>
     <InArgument x:TypeArguments="sd:DataTable" />
@@ -130,7 +131,7 @@
       <AssemblyReference>System.Private.Xml</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="2823,724.04" sap2010:WorkflowViewState.IdRef="Sequence_46">
+  <Sequence sap:VirtualizedContainerService.HintSize="1926,545" sap2010:WorkflowViewState.IdRef="Sequence_46">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -168,6 +169,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_idLot">[io_idLot]</InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_idDocument">[io_idDocument]</InArgument>
+        <InOutArgument x:TypeArguments="x:Int32" x:Key="io_Nmbr_ZIP">[io_Nmbr_ZIP]</InOutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>

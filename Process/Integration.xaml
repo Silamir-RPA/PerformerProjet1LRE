@@ -4,6 +4,7 @@
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_idLot" Type="InArgument(x:Int32)" />
     <x:Property Name="in_idDocument" Type="InArgument(x:Int32)" />
+    <x:Property Name="io_Nmbr_ZIP" Type="InOutArgument(x:Int32)" />
   </x:Members>
   <this:Integration.in_idLot>
     <InArgument x:TypeArguments="x:Int32" />
@@ -117,9 +118,10 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
       <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1926,2839" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="1926,2953" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="si:DirectoryInfo" Name="folderInfo" />
     </Sequence.Variables>
@@ -130,7 +132,7 @@
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Start Message" sap:VirtualizedContainerService.HintSize="518,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Phase d'Integration&quot;]" />
     <ui:GetFolderInfoX DisplayName="recuperer les infos du dossier " FolderPath="[in_Config(&quot;folderPathTmp&quot;).ToString]" sap:VirtualizedContainerService.HintSize="518,165" sap2010:WorkflowViewState.IdRef="GetFolderInfoX_2" Output="[folderInfo]" ThrowIfNotExists="False" />
-    <If Condition="[folderInfo.GetFiles.Count&gt;=1000 or (folderInfo.GetFiles.Count&gt;0 and in_last)]" DisplayName="si c'est le dernier iteam queue ou le dossier contient 1000 fichier" sap:VirtualizedContainerService.HintSize="518,2478" sap2010:WorkflowViewState.IdRef="If_18">
+    <If Condition="[folderInfo.GetFiles.Count&gt;=CINT(in_Config(&quot;MaxFiles&quot;).ToString) or (folderInfo.GetFiles.Count&gt;0 and in_last)]" DisplayName="si c'est le dernier iteam queue ou le dossier contient 1000 fichier" sap:VirtualizedContainerService.HintSize="518,2592" sap2010:WorkflowViewState.IdRef="If_18">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -138,7 +140,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,2226" sap2010:WorkflowViewState.IdRef="Sequence_46">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,2340" sap2010:WorkflowViewState.IdRef="Sequence_46">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="files" />
             <Variable x:TypeArguments="si:FileInfo" Name="fileInfo" />
@@ -195,6 +197,14 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </uascw:CompressFiles>
+          <Assign DisplayName="Incrementer Nombre ZIP" sap:VirtualizedContainerService.HintSize="450,114" sap2010:WorkflowViewState.IdRef="Assign_27">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[io_Nmbr_ZIP]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[io_Nmbr_ZIP+1]</InArgument>
+            </Assign.Value>
+          </Assign>
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Incrementer Nombre ZIP" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Process\utilities\IncrementerValue.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="in_name">ZIP</InArgument>
